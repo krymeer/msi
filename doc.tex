@@ -5,6 +5,16 @@
 \frenchspacing
 \usepackage{indentfirst}
 \usepackage{comment}
+\usepackage{hyperref}
+\usepackage[hang,flushmargin]{footmisc} 
+
+\hypersetup{
+    colorlinks  =   true,                   
+    linkcolor   =   black,                  
+    citecolor   =   black,                  
+    urlcolor    =   blue                    
+}
+\urlstyle{same}
 
 \title{Mobilne systemy informatyczne \\\normalsize\textbf{Projekt i implementacja systemu mobilnego}}
 \author{Krzysztof Radosław Osada}
@@ -23,12 +33,28 @@
     \tableofcontents
 
     \section{Wprowadzenie}
+    Niniejszy dokument jest omówieniem projektu i implementacji prostego \textbf{systemu mobilnego}. Praca jest zbudowana z czterech głównych sekcji: w~pierwszej z nich zawarty został wstęp do tematu, w drugiej -- informacje na temat projektu, w trzeciej -- dokumentacja ułatwiająca korzystanie z~systemu, natomiast w czwartej -- dane dotyczące implementacji.
 
-    \subsection{Treść pracy i informacje ogólne}
-    Tutaj umieszczę informacje dotyczące zawartości pracy.
+    \subsection{Podstawowe definicje}
+    W celu odpowiedniego zrozumienia przedstawianego problemu niezbędne wydaje się wypunktowanie kilku istotnych dlań pojęć:
+    \begin{itemize}
+        \item \textbf{system mobilny} składający się zarówno z elementów stałych, jak i~ruchomych: użytkowników, serwerów oraz stacji bazowych;
+        \item \textbf{użytkownicy}, mobilni, najczęściej przemieszczający się, korzystający z urządzeń bezprzewodowych i m.in. pod tym względem różnorodni (mający smartfony, palmtopy czy nawet radiowozy policyjne);
+        \item \textbf{serwer}, komputer stacjonarny świadczący usługi na rzecz użytkowników znajdujących się w sieci;
+        \item \textbf{stacja bazowa} zapewiająca utrzymanie łączności pomiędzy użytkownikiem a serwerem.
+    \end{itemize}
+
+    Wśród cech charakterystycznych systemów mobilnych wymienić można: brak wspólnej pamięci i globalnego zegara, komunikację ograniczoną do wymiany wiadomości czy asynchronizm wykonywanych operacji.
+
+    Połączenia w systemach mobilnych mogą być przewodowe bądź bezprzewodowe -- do tych ostatnich zalicza się: podczerwone, radiowe, ultradźwiękowe, mikrofalowe i laserowe.
+
+    Cennym źródłem informacji na temat systemów mobilnych są materiały dydaktyczne Wydziału Matematyki, Informatyki i Mechaniki Uniwersytetu Warszawskiego\footnote{\ M. Sobczak. Systemy mobilne - Studia Informatyczne. \url{http://wazniak.mimuw.edu.pl/images/1/11/Systemy_mobilne_wyklad_2.pdf}. Dostępny: 24.03.2018.}.
 
     \subsection{Opis świata rzeczywistego}
-    Tutaj przybliżę istniejące systemy.
+    Tutaj przedstawię funkcjonujące już rozwiązania.
+
+    \subsection{Tematyka pracy}
+    Tutaj omówię tematykę pracy, wynikającą z powyższego opisu świata rzeczywistego.
 
     \section{Projekt}
     

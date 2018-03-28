@@ -17,20 +17,44 @@ a {
     color: #dde392;
 }
 
+a:hover {
+    color: #eaedbb;
+}
+
+nav {
+    padding: 8px 0;
+}
+
 nav > a {
     display: block;
     color: #fff;
-    padding: 8px 16px;
+    padding: 8px 18px;
     font-size: 16px;
     font-weight: bold;
 }
 
-.page-logo {
+nav > a:hover {
+    background: #fff;
+    color: #000;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+a.page-logo {
     font-family: 'Nunito', sans-serif;
     color: #fff;
+    display: block;
     font-weight: bold;
     font-size: 36px;
     margin: 0;
+    justify-self: start;
 }
 
 #page-sidebar {
@@ -54,6 +78,15 @@ nav > a {
     justify-self: end;
     font-size: 36px;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+#nav-burger:hover {
+    background: #fff;
+    color: #000;
 }
 
 #page-title {
@@ -111,31 +144,38 @@ footer > div:last-child {
     display: none;
 }
 
+#menu-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+}
+
 @media only screen and (max-width: 767px) {
     .mobile-hide {
         display: none;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {500px
     body {
         font-size: 16px;
     }
 
-    a:hover {
-        color: #eaedbb;
-    }
-
+    #menu-mask,
     #nav-burger {
         display: none;
     }
 
-    nav > a:hover {
-        background: #fff;
-        color: #000;
+    nav {
+        padding: 0;
     }
 
-    .page-logo {
+    nav > a {
+        padding: 8px 16px;
+    }
+
+    a.page-logo {
         font-size: 60px;
         margin: 80px 16px;
     }
@@ -156,7 +196,7 @@ footer > div:last-child {
         width: calc(100% - 300px);
         position: relative;
         left: 300px;
-        padding: 80px 56px 40px 56px;
+        padding: 80px 56px 60px 56px;
     }
 
     #page-title {

@@ -1,35 +1,34 @@
 <?php
-class News_model extends CI_Model
-{
+class News_model extends CI_Model {
     public function __construct()
     {
         $this->load->database();
     }
 
-    public function get_news( $slug = false )
+    public function get_news($slug = false)
     {
-        if( !$slug )
+        if (!$slug)
         {
-            $query = $this->db->get( 'news' );
+            $query = $this->db->get('news');
             return $query->result_array();
         }
 
-        $query = $this->db->get_where( 'news', array( 'slug' => $slug ) );
+        $query = $this->db->get_where('news', array('slug' => $slug));
         return $query->row_array();
     }
 
     public function set_news()
     {
-        $this->load->helper( 'url' );
+        $this->load->helper('url');
 
-        $slug = url_title( $this->input->post( 'title' ), 'dash', true );
+        $slug = url_title($this->input->post('title'), 'dash', true);
 
         $data = array(
-            'title' => $this->input->post( 'title' ),
+            'title' => $this->input->post('title'),
             'slug' => $slug,
-            'text' => $this->input->post( 'text' )
+            'text' => $this->input->post('text')
         );
 
-        return $this->db->insert( 'news', $data );
+        return $this->db->insert('news', $data);
     }
 }

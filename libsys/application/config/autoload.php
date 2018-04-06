@@ -133,3 +133,11 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
+
+/*
+|
+| Getting access to the static files' directory path
+| See: https://stackoverflow.com/questions/6630770/where-do-i-put-image-files-css-js-etc-in-codeigniter
+|
+*/
+$autoload['helper'] = array('url', 'utility');

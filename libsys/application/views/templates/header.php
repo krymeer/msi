@@ -26,6 +26,7 @@
                 <a href="/catalogue">Katalog</a>
                 <a href="/map">Lokalizacje</a>
                 <a href="/contact">Kontakt</a>
+                <?php if (isset($this->session) && $this->session->logged_in) echo '<a href="'.base_url().'account/logout">Wyloguj się</a>'; ?>
             </nav>
         </div>
         <div id="page-container">

@@ -100,11 +100,11 @@ a.page-logo {
     padding: 16px 16px 24px 16px;
 }
 
-section {
+.page-contents > section {
     margin-top: 36px;
 }
 
-header + section {
+.page-contents > section:first-child {
     margin-top: 18px;
 }
 
@@ -214,11 +214,11 @@ footer > div:last-child {
         height: 10px;
     }
 
-    section {
+    .page-contents > section {
         margin-top: 48px;
     }
 
-    header + section {
+    .page-contents > section:first-child {
         margin-top: 24px;
     }
 

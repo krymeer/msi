@@ -20,15 +20,16 @@
                 <i id="nav-burger" class="fas fa-bars"></i>
             </div>
            <nav class="mobile-hide noselect">
-                <a href="#">Strona główna</a>
-                <a href="#">Moje konto</a>
-                <a href="#">Aktualności</a>
-                <a href="#">Katalog</a>
-                <a href="#">Lokalizacje</a>
-                <a href="#">Kontakt</a>
+                <a href="/">Strona główna</a>
+                <a href="/account">Moje konto</a>
+                <a href="/news">Aktualności</a>
+                <a href="/catalogue">Katalog</a>
+                <a href="/map">Lokalizacje</a>
+                <a href="/contact">Kontakt</a>
             </nav>
         </div>
         <div id="page-container">
             <header>
                 <h1 id="page-title"><?php echo $title; ?></h1>
             </header>
+            <div class="page-contents page-<?php if (count ($this->uri->segments) > 0) echo $this->uri->segments[1]; else echo 'home'; ?>" id="page-<?php echo str_replace('/', '-', $this->uri->uri_string); ?>">

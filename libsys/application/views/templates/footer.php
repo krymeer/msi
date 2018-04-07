@@ -1,3 +1,4 @@
+                </div>
             </div>
             <footer>
                 <div>&copy; 2018 Krzysztof R. Osada</div>

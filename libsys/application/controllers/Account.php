@@ -43,6 +43,7 @@ class Account extends CI_Controller {
             }
             else
             {
+                $this->session->username = $this->input->post('username');
                 $this->session->logged_in = true;
                 redirect('account');
             }
@@ -55,7 +56,8 @@ class Account extends CI_Controller {
 
     public function logout()
     {
-        $this->session->logged_in = null;
+
+        $this->session->sess_destroy();
         redirect('/');
     }
 

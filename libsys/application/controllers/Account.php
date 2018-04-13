@@ -5,7 +5,6 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->library('session');
-        $this->load->helper('html');
         $this->class_title = 'Moje konto';
     }
 

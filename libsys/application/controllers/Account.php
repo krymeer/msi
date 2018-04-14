@@ -28,8 +28,9 @@ class Account extends CI_Controller {
         $this->load->helper('form');
         $this->load->helper('html');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('username', 'username', 'required');
-        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->config->set_item('language', 'polish');
+        $this->form_validation->set_rules('username', 'Nazwa użytkownika', 'required|alpha_dash');
+        $this->form_validation->set_rules('password', 'Hasło', 'required');
 
         echo link_tag(asset_url().'css/alerts.css');
         echo link_tag(asset_url().'css/buttons.css');

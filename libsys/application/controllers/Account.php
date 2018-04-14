@@ -48,9 +48,11 @@ class Account extends CI_Controller {
             }
             else
             {
-                $this->session->username = $this->input->post('username');
-                $this->session->logged_in = true;
-                redirect('account');
+                $this->session->username    = $this->input->post('username');
+                $this->session->user_id     = $auth->result()[0]->id;
+                $this->session->logged_in   = true;
+
+                redirect('/account');
             }
         }
                 

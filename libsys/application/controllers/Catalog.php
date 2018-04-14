@@ -5,6 +5,7 @@ class Catalog extends CI_Controller {
         parent::__construct();
         $this->load->model('catalog_model');
         $this->load->library('session');
+        $this->lang->load('libsys_lang', 'polish');
         $this->load->helper('html');
     }
 
@@ -15,12 +16,14 @@ class Catalog extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('catalog/index', $data);
         $this->load->view('templates/footer');
+        echo link_tag(asset_url().'css/alerts.css');
         echo link_tag(asset_url().'css/catalog.css');
     }
 
-    public function b_orrow($id)
+    public function borrow($id)
     {
-        $this->catalog_model->borrow_book($id);
+        $status = $this->catalog_model->update_book_status($id, $this->session->user_id);
+        $this->session->set_flashdata('borrowing_status', $status);
         redirect('/catalog');
     }
 }

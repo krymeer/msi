@@ -11,9 +11,17 @@ class Catalog_model extends CI_model {
         return $this->db->query($q);
     }
 
-    public function borrow_book($id)
+    public function update_book_status($book_id, $user_id)
     {
-        $q = 'UPDATE books SET books.status = 1 WHERE id = ?';
-        return $this->db->query($q, $id);
+        $q = 'SELECT * FROM books WHERE book_status = 2 AND book_id = ?';
+
+        if (empty($this->db->query($q, $book_id)->result()))
+        {
+            return false;
+        }
+
+        $q = 'UPDATE books SET book_status = 1, book_user_id = ? WHERE book_id = ?';
+
+        return $this->db->query($q, array($user_id, $book_id));
     }
 }

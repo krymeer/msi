@@ -1,0 +1,19 @@
+form label {
+    font-size: 13px;
+    color: #888;
+}
+
+form input {
+    display: block;
+    border: none;
+    border: 2px solid #ccc;
+    color: #000;
+    margin: 2.5px 0 10px 0;
+    padding: 5px;
+    outline-color: #eb5e55;
+    width: 100%;
+}
+
+form input:last-of-type {
+    margin-bottom: 18px;
+}

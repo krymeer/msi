@@ -1,0 +1,32 @@
+#page-account-login form {
+    margin: 15px 0;
+}
+
+#page-account-login form span {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 767px) {
+    #page-account-login form button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #page-account-login form {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-auto-flow: row dense;
+    }
+
+    #page-account-login form label,
+    #page-account-login form input {
+        grid-column: span 2;
+    }
+
+    #page-account-login form button {
+        grid-column: 2;
+        justify-self: end;
+    }
+}

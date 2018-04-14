@@ -26,10 +26,15 @@ class Account extends CI_Controller {
     public function login()
     {
         $this->load->helper('form');
+        $this->load->helper('html');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
 
+        echo link_tag(asset_url().'css/alerts.css');
+        echo link_tag(asset_url().'css/buttons.css');
+        echo link_tag(asset_url().'css/forms.css');
+        echo link_tag(asset_url().'css/login.css');
         $data['title'] = $this->class_title;
 
         if ($this->form_validation->run())

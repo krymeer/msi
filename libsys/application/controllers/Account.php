@@ -3,8 +3,8 @@ class Account extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('account_model');
         $this->load->library('session');
+        $this->load->model('account_model');
         $this->class_title = 'Moje konto';
     }
 

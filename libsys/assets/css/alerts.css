@@ -1,18 +1,27 @@
 .alert {
+    padding: 8.75px;
+    margin: 13.125px 0;
+    font-size: 10.5px;
     font-weight: bold;
-    font-size: 12px;
-    padding: 10px;
-    margin: 15px 0;
     border-radius: 2px;
     border: 2px solid #4392f1;
     color: #4392f1;
 }
 
 .alert::before {
+    font-size: 15.75px;
     content: '\f05a';
     font-family: Font Awesome\ 5 Free;
     float: right;
-    font-size: 18px;
+}
+
+.alert.success {
+    border-color: #20bf55;
+    color: #20bf55;
+}
+
+.alert.success::before {
+    content: '\f058';
 }
 
 .alert.error {
@@ -21,5 +30,28 @@
 }
 
 .alert.error::before {
-    content: '\f071';
+    content: '\f057';
+}
+
+.alert.warning {
+    color: #ff8811;
+    border-color: #ff8811;
+}
+
+.alert.warning::before {
+    content: '\f06a';
+}
+
+@media only screen and (min-width: 768px) {
+    .alert {
+        font-size: 12px;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+
+    .alert::before {
+        font-size: 18px;
+    }
+
 }

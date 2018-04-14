@@ -1,11 +1,35 @@
-button {
+button, a.button {
     border: none;
     background: #eb5e55;
     color: #fff;
-    padding: 5px 10px;
+    padding: 4.375px 8.75px;
     cursor: pointer;
 }
 
-button:hover {
+button:hover, a.button:hover {
+    color: #fff;
     background: #474848;
+}
+
+button.small, a.button.small {
+    font-size: 10.5px;
+}
+
+button.dark, a.button.dark {
+    background: #606262;
+}
+
+button.dark:hover, a.button.dark:hover {
+    background: #fff;
+    color: #eb5e55;
+}
+
+@media only screen and (min-width: 768px) {
+    button, a.button {
+        padding: 5px 10px;
+    }
+
+    button.small, a.button.small {
+        font-size: 12px;
+    }
 }

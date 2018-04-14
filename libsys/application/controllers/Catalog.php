@@ -3,8 +3,8 @@ class Catalog extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('catalog_model');
         $this->load->library('session');
+        $this->load->model('catalog_model');
         $this->lang->load('libsys_lang', 'polish');
         $this->load->helper('html');
     }
@@ -18,6 +18,7 @@ class Catalog extends CI_Controller {
         $this->load->view('templates/footer');
         echo link_tag(asset_url().'css/alerts.css');
         echo link_tag(asset_url().'css/catalog.css');
+        echo link_tag(asset_url().'css/buttons.css');
     }
 
     public function borrow($id)

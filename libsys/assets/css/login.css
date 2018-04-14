@@ -18,6 +18,7 @@
         display: grid;
         grid-template-columns: auto auto;
         grid-auto-flow: row dense;
+        max-width: 500px;
     }
 
     #page-account-login form label,

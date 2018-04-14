@@ -1,16 +1,25 @@
-.error {
+.alert {
     font-weight: bold;
     font-size: 12px;
-    color: #eb5e55;
-    border: 2px solid #eb5e55;
     padding: 10px;
-    border-radius: 2px;
     margin: 15px 0;
+    border-radius: 2px;
+    border: 2px solid #4392f1;
+    color: #4392f1;
 }
 
-.error::before {
-    content: '\f071';
+.alert::before {
+    content: '\f05a';
     font-family: Font Awesome\ 5 Free;
     float: right;
     font-size: 18px;
+}
+
+.alert.error {
+    border-color: #eb5e55;
+    color: #eb5e55;
+}
+
+.alert.error::before {
+    content: '\f071';
 }

@@ -3,11 +3,11 @@
     <div class="section-content">Wprowadź poniżej swoje dane, aby skorzystać z funkcjonalności systemu.</div>
     
 <?php if (isset($auth_err)): ?>
-    <div class="error"><?php echo $auth_err; ?></div>
+    <div class="alert error"><?php echo $auth_err; ?></div>
 <?php endif; ?>
 
 <?php 
-    echo validation_errors('<div class="error">', '</div>');
+    echo validation_errors('<div class="alert error">', '</div>');
     echo form_open('account/login');
 ?>
         <label for="username">Nazwa użytkownika</label>

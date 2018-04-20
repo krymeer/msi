@@ -11,7 +11,7 @@ class Catalog extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Katalog';
+        $data['title'] = $this->lang->line('catalog__title');
         $data['books'] = $this->catalog_model->get_books()->result();
         $this->load->view('templates/header', $data);
         $this->load->view('catalog/index', $data);

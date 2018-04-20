@@ -5,6 +5,7 @@ class Pages extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('html');
+        $this->lang->load('libsys_lang', 'polish');
     }
 
     public function view($page = 'home')
@@ -18,7 +19,7 @@ class Pages extends CI_Controller {
 
         if ($page === 'home')
         {
-            $data['title'] = 'Strona główna';
+            $data['title'] = $this->lang->line('home__title');
         }
 
         $this->load->view('templates/header', $data);

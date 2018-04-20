@@ -2,6 +2,7 @@
 
 $lang['form_validation_required']       = 'Pole „{field}” jest wymagane.';
 $lang['form_validation_alpha_dash']     = 'Pole „{field}” może zawierać jedynie znaki alfanumeryczne, podkreślniki i myślniki.';
+$lang['form_validation_incorrect_data'] = 'Nieprawidłowa nazwa użytkownika lub hasło.';
 
 /**
  * TO FINISH

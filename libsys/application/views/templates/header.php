@@ -20,13 +20,32 @@
                 <i id="nav-burger" class="fas fa-bars"></i>
             </div>
            <nav class="mobile-hide noselect">
-                <a href="/">Strona główna</a>
-                <a href="/account">Moje konto</a>
-                <a href="/news">Aktualności</a>
-                <a href="/catalog">Katalog</a>
-                <a href="/map">Lokalizacje</a>
-                <a href="/contact">Kontakt</a>
-                <?php if (isset($this->session) && $this->session->logged_in) echo '<a href="/account/logout">Wyloguj się</a>'; ?>
+                <a href="/">
+                    <?php echo $this->lang->line('home__title'); ?>
+
+                </a>
+                <a href="/account">
+                    <?php echo $this->lang->line('account__title'); ?>
+
+                </a>
+                <a href="/news">
+                    <?php echo $this->lang->line('news__title'); ?>
+
+                </a>
+                <a href="/catalog">
+                    <?php echo $this->lang->line('catalog__title'); ?>
+                </a>
+                <a href="/map">
+                    <?php echo $this->lang->line('map__title'); ?>
+                </a>
+                <a href="/contact">
+                    <?php echo $this->lang->line('contact__title'); ?>
+                </a>
+            <?php if (isset($this->session) && $this->session->logged_in): ?>
+                <a href="/account/logout">
+                    <?php echo $this->lang->line('logout__title'); ?>
+                </a>
+            <?php endif; ?>
             </nav>
         </div>
         <div id="page-container">

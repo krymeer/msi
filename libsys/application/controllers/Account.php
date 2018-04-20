@@ -6,7 +6,7 @@ class Account extends CI_Controller {
         $this->load->library('session');
         $this->load->model('account_model');
         $this->lang->load('libsys_lang', 'polish');
-        $this->class_title = 'Moje konto';
+        $this->class_title = $this->lang->line('account__title');
     }
 
     public function index()
@@ -36,8 +36,8 @@ class Account extends CI_Controller {
         $this->load->helper('html');
         $this->load->library('form_validation');
         $this->config->set_item('language', 'polish');
-        $this->form_validation->set_rules('username', 'Nazwa użytkownika', 'required|alpha_dash');
-        $this->form_validation->set_rules('password', 'Hasło', 'required');
+        $this->form_validation->set_rules('username', $this->lang->line('account__section_login_form_label_1'), 'required|alpha_dash');
+        $this->form_validation->set_rules('password', $this->lang->line('account__section_login_form_label_2'), 'required');
 
         echo link_tag(asset_url().'css/alerts.css');
         echo link_tag(asset_url().'css/buttons.css');
@@ -45,13 +45,14 @@ class Account extends CI_Controller {
         echo link_tag(asset_url().'css/login.css');
         $data['title'] = $this->class_title;
 
+
         if ($this->form_validation->run())
         {
             $auth = $this->account_model->auth();
 
             if (empty($auth->result()) || !password_verify($this->input->post('password'), $auth->result()[0]->pass))
             {
-                $data['auth_err'] = 'Nieprawidłowa nazwa użytkownika lub hasło.';
+                $data['auth_err'] = $this->lang->line('form_validation_incorrect_data');
             }
             else
             {

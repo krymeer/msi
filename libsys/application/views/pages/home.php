@@ -1,4 +1,8 @@
 <section>
-    <h2 class="section-title">Witaj świecie!</h2>
-    <div class="section-content">Nazywam się Krzysztof, a to jest test mojej strony. Witryna ta powstaje w bólach, gdyż taki ze mnie grafik, jak z koziej d**y trąba.</div>
+    <h2 class="section-title">
+        <?php echo $this->lang->line('home__section_main_title'); ?>
+    </h2>
+    <div class="section-content">
+        <?php echo $this->lang->line('home__section_main_text'); ?>
+    </div>
 </section>

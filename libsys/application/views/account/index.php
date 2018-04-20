@@ -1,4 +1,7 @@
 <section>
-    <h2 class="section-title">Cześć, <?php echo $this->session->username; ?>!</h2>
-    <div class="section-content">Możesz już korzystać z wszystkich niezliczonych funkcjonalności tego systemu.</div>
+    <h2 class="section-title">
+        <?php echo $this->lang->line('account__section_main_title').','.$this->session->username; ?>!</h2>
+    <div class="section-content">
+        <?php echo $this->lang->line('account__section_main_text'); ?>
+    </div>
 </section>

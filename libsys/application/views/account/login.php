@@ -1,6 +1,10 @@
 <section>
-    <h2 class="section-title">Nie jesteś zalogowany.</h2>
-    <div class="section-content">Wprowadź poniżej swoje dane, aby skorzystać z funkcjonalności systemu.</div>
+    <h2 class="section-title">
+        <?php echo $this->lang->line('account__section_login_title'); ?>
+    </h2>
+    <div class="section-content">
+        <?php echo $this->lang->line('account__section_login_text'); ?>
+    </div>
     
 <?php if (isset($auth_err)): ?>
     <div class="alert error"><?php echo $auth_err; ?></div>
@@ -10,11 +14,22 @@
     echo validation_errors('<div class="alert error">', '</div>');
     echo form_open('account/login');
 ?>
-        <label for="username">Nazwa użytkownika</label>
+        <label for="username">
+            <?php echo $this->lang->line('account__section_login_form_label_1'); ?>
+        </label>
         <input type="input" name="username">
-        <label for="password">Hasło</label>
+        <label for="password">
+            <?php echo $this->lang->line('account__section_login_form_label_2'); ?>
+        </label>
         <input type="password" name="password">
-        <button type="submit" name="submit">Zaloguj się</button>
-        <span>Nie masz konta? <a href="/account/signup">Zarejestruj się!</a></span>
+        <button type="submit" name="submit">
+            <?php echo $this->lang->line('account__section_login_form_submit'); ?>
+        </button>
+        <span>
+            <?php echo $this->lang->line('account__section_login_form_no_account'); ?>
+             <a href="/account/signup">
+                <?php echo $this->lang->line('account__section_login_form_sign_up'); ?>
+             </a>
+        </span>
     </form>
 </section>

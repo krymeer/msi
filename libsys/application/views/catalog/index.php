@@ -15,7 +15,11 @@
                 <th><?php echo $this->lang->line('catalog__book_title'); ?></th>
                 <th><?php echo $this->lang->line('catalog__book_author'); ?></th>
                 <th><?php echo $this->lang->line('catalog__book_status'); ?></th>
+            
+            <?php if ($this->session->logged_in): ?>    
                 <th></th>
+            <?php endif; ?>
+            
             </tr>
 
         <?php foreach ($books as $b): ?>
@@ -25,6 +29,8 @@
                 <td data-book-status="<?php echo $b->book_status; ?>">
                     <i class="fas fa-square"></i>
                 </td>
+             
+            <?php if ($this->session->logged_in): ?>    
                 <td>
 
                 <?php if ($b->book_status === "2") : ?>
@@ -32,6 +38,8 @@
                 <?php endif; ?>
 
                 </td>
+            <?php endif; ?>
+            
             </tr>
         <?php endforeach; ?>
 

@@ -5,6 +5,7 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('account_model');
+        $this->lang->load('libsys_lang', 'polish');
         $this->class_title = 'Moje konto';
     }
 
@@ -15,6 +16,12 @@ class Account extends CI_Controller {
             $data['title'] = $this->class_title;
             $this->load->view('templates/header', $data);
             $this->load->view('account/index', $data);
+
+            if ($this->session->is_librarian)
+            {
+                $this->load->view('account/librarian');
+            }
+
             $this->load->view('templates/footer');
         }
         else
@@ -48,10 +55,10 @@ class Account extends CI_Controller {
             }
             else
             {
-                $this->session->username    = $this->input->post('username');
-                $this->session->user_id     = $auth->result()[0]->id;
-                $this->session->logged_in   = true;
-
+                $this->session->username        = $this->input->post('username');
+                $this->session->user_id         = $auth->result()[0]->id;
+                $this->session->is_librarian    = $auth->result()[0]->is_librarian;
+                $this->session->logged_in       = true;
                 redirect('/account');
             }
         }

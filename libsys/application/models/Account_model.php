@@ -7,7 +7,7 @@ class Account_model extends CI_model {
 
     public function auth()
     {
-        $q = 'SELECT id, pass FROM users WHERE name = ?';
+        $q = 'SELECT * FROM users WHERE name = ?';
         return $this->db->query($q, $this->input->post('username'));
     }
 }

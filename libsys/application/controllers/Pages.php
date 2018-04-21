@@ -12,14 +12,17 @@ class Pages extends CI_Controller {
     {
         if (!(file_exists(APPPATH.'views/pages/'.$page.'.php')))
         {
-            show_404();
+            $data['error_code'] = 404;
+            $data['title']      = $this->lang->line('error__title');
+            $page               = $data['error_code'];
         }
-
-        $data['title'] = ucfirst($page);
-
-        if ($page === 'home')
+        else if ($page === 'home')
         {
             $data['title'] = $this->lang->line('home__title');
+        }
+        else
+        {
+            $data['title'] = ucfirst($page);
         }
 
         $this->load->view('templates/header', $data);

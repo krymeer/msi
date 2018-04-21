@@ -30,3 +30,5 @@ $lang['news__title']                                = 'Aktualności';
 $lang['map__title']                                 = 'Lokalizacje';
 $lang['contact__title']                             = 'Kontakt';
 $lang['logout__title']                              = 'Wyloguj się';
+$lang['error__title']                               = 'Błąd';
+$lang['error_404__section_main_text']               = 'Żądana strona nie została znaleziona.';

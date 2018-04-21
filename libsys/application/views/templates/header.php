@@ -6,6 +6,10 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito|Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo asset_url();?>css/fontawesome-all.min.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>css/styles.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>css/alerts.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>css/buttons.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>css/choices.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>css/forms.css">
         <script src="<?php echo asset_url();?>js/jquery-3.3.1.min.js"></script>
         <script src="<?php echo asset_url();?>js/main.js"></script>
         <title>Libsys v0.2</title>
@@ -14,7 +18,7 @@
         <div class="mobile-hide" id="menu-mask"></div>
         <div id="page-sidebar">
             <div id="upper-bar">
-                <a href="" class="page-logo">
+                <a href="/" class="page-logo">
                     libsys
                 </a>
                 <i id="nav-burger" class="fas fa-bars"></i>

@@ -5,6 +5,12 @@ class Account_model extends CI_model {
         $this->load->database();
     }
 
+    public function remove($id)
+    {
+        $q = 'DELETE FROM users WHERE id = ?';
+        return $this->db->query($q, $id);
+    }
+
     public function auth()
     {
         $q = 'SELECT * FROM users WHERE name = ?';

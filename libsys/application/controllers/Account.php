@@ -5,23 +5,20 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('account_model');
+        $this->load->helper('html');
         $this->lang->load('libsys_lang', 'polish');
         $this->class_title = $this->lang->line('account__title');
     }
 
     public function index()
     {
+        echo link_tag(asset_url().'css/account.css');
+
         if ($this->session->logged_in)
         {
             $data['title'] = $this->class_title;
             $this->load->view('templates/header', $data);
             $this->load->view('account/index', $data);
-
-            if ($this->session->is_librarian)
-            {
-                $this->load->view('account/librarian');
-            }
-
             $this->load->view('templates/footer');
         }
         else
@@ -29,51 +26,98 @@ class Account extends CI_Controller {
             redirect('account/login');
         }
     }
-
-    public function login()
+ 
+    public function remove()
     {
-        $this->load->helper('form');
-        $this->load->helper('html');
-        $this->load->library('form_validation');
-        $this->config->set_item('language', 'polish');
-        $this->form_validation->set_rules('username', $this->lang->line('account__section_login_form_label_1'), 'required|alpha_dash');
-        $this->form_validation->set_rules('password', $this->lang->line('account__section_login_form_label_2'), 'required');
-
-        echo link_tag(asset_url().'css/alerts.css');
-        echo link_tag(asset_url().'css/buttons.css');
-        echo link_tag(asset_url().'css/forms.css');
-        echo link_tag(asset_url().'css/login.css');
-        $data['title'] = $this->class_title;
-
-
-        if ($this->form_validation->run())
+        if ($this->session->logged_in)
         {
-            $auth = $this->account_model->auth();
 
-            if (empty($auth->result()) || !password_verify($this->input->post('password'), $auth->result()[0]->pass))
+            if ($this->uri->segment(3) === 'no')
             {
-                $data['auth_err'] = $this->lang->line('form_validation_incorrect_data');
+                redirect('account');
+            }
+            else if ($this->uri->segment(3) === 'yes')
+            {
+                $this->account_model->remove($this->session->user_id);
+                $this->session->set_flashdata('account_removed', 1);
+                redirect('account/remove/success');
             }
             else
             {
-                $this->session->username        = $this->input->post('username');
-                $this->session->user_id         = $auth->result()[0]->id;
-                $this->session->is_librarian    = $auth->result()[0]->is_librarian;
-                $this->session->logged_in       = true;
-                redirect('/account');
+                $data['title'] = $this->class_title;
+                $this->load->view('templates/header', $data);
+                $this->load->view('account/remove', $data);
+                $this->load->view('templates/footer');
             }
         }
-                
-        $this->load->view('templates/header', $data);
-        $this->load->view('account/login', $data);
-        $this->load->view('templates/footer', $data);
+        else
+        {
+            redirect('account/login');
+        }
+    }
+
+    public function removal_success()
+    {
+        if (isset($this->session->account_removed))
+        {
+            $data['title'] = $this->class_title;
+            $this->load->view('templates/header', $data);
+            $this->load->view('account/removal_success', $data);
+            $this->load->view('templates/footer');
+            $this->session->sess_destroy();
+        }
+        else
+        {
+            redirect('');
+        }
+    }
+
+    public function login()
+    {
+        if (!$this->session->logged_in)
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->config->set_item('language', 'polish');
+            $this->form_validation->set_rules('username', $this->lang->line('account__section_login_form_label_1'), 'required|alpha_dash');
+            $this->form_validation->set_rules('password', $this->lang->line('account__section_login_form_label_2'), 'required');
+
+            echo link_tag(asset_url().'css/login.css');
+            $data['title'] = $this->class_title;
+
+
+            if ($this->form_validation->run())
+            {
+                $auth = $this->account_model->auth();
+
+                if (empty($auth->result()) || !password_verify($this->input->post('password'), $auth->result()[0]->pass))
+                {
+                    $data['auth_err'] = $this->lang->line('form_validation_incorrect_data');
+                }
+                else
+                {
+                    $this->session->username        = $this->input->post('username');
+                    $this->session->user_id         = intval($auth->result()[0]->id);
+                    $this->session->is_librarian    = $auth->result()[0]->is_librarian;
+                    $this->session->logged_in       = true;
+                    redirect('account');
+                }
+            }
+                    
+            $this->load->view('templates/header', $data);
+            $this->load->view('account/login', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        else
+        {
+            redirect('account');
+        }
     }
 
     public function logout()
     {
-
         $this->session->sess_destroy();
-        redirect('/');
+        redirect('');
     }
 
     public function view($page = 'login')

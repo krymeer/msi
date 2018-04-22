@@ -16,4 +16,10 @@ class Account_model extends CI_model {
         $q = 'SELECT * FROM users WHERE name = ?';
         return $this->db->query($q, $this->input->post('username'));
     }
+
+    public function get_username($id)
+    {
+        $q = 'SELECT * FROM users WHERE id = ?';
+        return $this->db->query($q, $id);
+    }
 }

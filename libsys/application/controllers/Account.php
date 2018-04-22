@@ -31,7 +31,6 @@ class Account extends CI_Controller {
     {
         if ($this->session->logged_in)
         {
-
             if ($this->uri->segment(3) === 'no')
             {
                 redirect('account');

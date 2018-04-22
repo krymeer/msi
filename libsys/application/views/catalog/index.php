@@ -4,7 +4,7 @@
         <?php echo $this->lang->line('catalog__sections_main_text'); ?>
 
     <?php if (isset($this->session->borrowing_status)): ?>
-        <div class="alert <?php echo ($this->session->borrowing_status ? 'success' : 'error'); ?>">
+        <div class="alert <?php echo ($this->session->borrowing_status % 2 != 0 ? 'success' : 'error'); ?>">
             <?php echo $this->lang->line('catalog__borrowing_status')[(int)$this->session->borrowing_status]; ?>
         </div>
     <?php endif; ?>
@@ -33,8 +33,11 @@
             <?php if ($this->session->logged_in): ?>    
                 <td>
 
-                <?php if ($b->book_status === "2") : ?>
+                <?php if ($b->book_status === "2" && !$this->session->is_librarian) : ?>
                     <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>"><?php echo $this->lang->line('catalog__action_borrow'); ?></a>
+                <?php elseif ($b->book_status === "1" && $this->session->is_librarian): ?>
+                    <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>/confirm"><?php echo $this->lang->line('catalog__action_confirm'); ?></a>
+                    <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>/cancel"><?php echo $this->lang->line('catalog__action_cancel'); ?></a>
                 <?php endif; ?>
 
                 </td>

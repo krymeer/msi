@@ -36,6 +36,11 @@
     color: #20bf55;
 }
 
+#book-list td .button {
+    display: block;
+    margin: 2px 0;
+}
+
 @media only screen and (min-width: 768px) {
     #book-list {
         margin: 15px 0;
@@ -49,5 +54,10 @@
     #book-list td {
         font-size: 14px;
         padding: 10px;
+    }
+
+    #book-list td .button {
+        display: block;
+        margin: 4px 0;
     }
 }

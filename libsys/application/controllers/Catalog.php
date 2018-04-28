@@ -20,69 +20,65 @@ class Catalog extends CI_Controller {
         echo link_tag(asset_url().'css/catalog.css');
     }
 
-    public function cancel()
+    public function cancel($book_id = -1, $user_id = -1)
     {
-        if ($this->session->is_librarian && count($this->uri->segments) === 4 && is_numeric($this->uri->segment(3)) && is_numeric($this->uri->segment(4)))
+        $f_code = 0;
+
+        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
         {
-            $status = $this->catalog_model->update_book_status($id, $this->session->user_id, 2);
-            $f_code = 0;
+            $status = $this->catalog_model->update_book_status($book_id, $user_id, 1, 2);
 
             if ($status)
             {
                 $f_code = 5;
             }
-
-            $this->session->set_flashdata('borrowing_status', $f_code);
         }
 
+        $this->session->set_flashdata('borrowing_status', $f_code);
         redirect('catalog');
     }
 
     public function return($book_id = -1, $user_id = -1)
     {
+        $f_code = 0;
+
         if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
         {
             $status = $this->catalog_model->update_book_status($book_id, $user_id, 0, 2);
-            $f_code = 0;
 
             if ($status)
             {
                 $f_code = 7;
             }
-
-            $this->session->set_flashdata('borrowing_status', $f_code);
-        }
-        else
-        {
-            // Handle illegal operation
         }
 
+        $this->session->set_flashdata('borrowing_status', $f_code);
         redirect('catalog');
     }
 
-    public function confirm($id)
+    public function confirm($book_id = -1, $user_id = -1)
     {
-        if ($this->session->is_librarian && count($this->uri->segments) === 4 && is_numeric($this->uri->segment(3)) && is_numeric($this->uri->segment(4)))
+        $f_code = 0;
+
+        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
         {
-            $status = $this->catalog_model->update_book_status($id, $this->session->user_id, 0);
-            $f_code = 0;
+            $status = $this->catalog_model->update_book_status($book_id, $user_id, 1, 0);
 
             if ($status)
             {
                 $f_code = 3;
             }
-
-            $this->session->set_flashdata('borrowing_status', $f_code);
         }
 
+        $this->session->set_flashdata('borrowing_status', $f_code);
         redirect('catalog');
     }
 
-    public function borrow($id)
+    public function borrow($book_id = -1, $action = '')
     {
-        if ($this->session->is_librarian && count($this->uri->segments) === 4 && ($this->uri->segment(4) === 'confirm' || $this->uri->segment(4) === 'cancel' || $this->uri->segment(4) === 'return'))
+        if ($this->session->is_librarian && ($action === 'confirm' || $action === 'cancel' || $action === 'return'))
         {
-            $b = $this->catalog_model->get_book($id)->result();
+            $b = $this->catalog_model->get_book($book_id)->result();
 
             if (empty($b))
             {
@@ -112,16 +108,17 @@ class Catalog extends CI_Controller {
                 }
             }
 
+
+        }
+        else if ($this->session->logged_in && $book_id > 0)
+        {
+            $status = $this->catalog_model->update_book_status($book_id, $this->session->user_id, 2, 1);
+            $this->session->set_flashdata('borrowing_status', $status);
+            redirect('catalog');
         }
         else
         {
-            if ($this->session->logged_in && count($this->uri->segments) === 3 && is_numeric($this->uri->segment(3)))
-            {
-                $status = $this->catalog_model->update_book_status($id, $this->session->user_id, 1);
-                $this->session->set_flashdata('borrowing_status', $status);
-            }
-            
-            redirect('catalog');
+            // Handle invalid operation
         }
     }
 }

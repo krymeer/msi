@@ -22,55 +22,64 @@ class Catalog extends CI_Controller {
 
     public function cancel($book_id = -1, $user_id = -1)
     {
-        $f_code = 0;
-
-        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
+        $msg        = 'auth_err';
+        $msg_type   = 'error';
+        
+        if ($this->session->is_librarian)
         {
-            $status = $this->catalog_model->update_book_status($book_id, $user_id, 1, 2);
+            $msg    = 'misc_err';
+            $result = $this->catalog_model->update_book_status($book_id, $user_id, 1, 2);
 
-            if ($status)
+            if ($result)
             {
-                $f_code = 5;
+                $msg        = 'bw_cancel';
+                $msg_type   = 'success';
             }
         }
 
-        $this->session->set_flashdata('borrowing_status', $f_code);
+        $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
         redirect('catalog');
     }
 
     public function return($book_id = -1, $user_id = -1)
     {
-        $f_code = 0;
+        $msg        = 'auth_err';
+        $msg_type   = 'error';
 
-        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
+        if ($this->session->is_librarian)
         {
-            $status = $this->catalog_model->update_book_status($book_id, $user_id, 0, 2);
+            $msg    = 'misc_err';
+            $result = $this->catalog_model->update_book_status($book_id, $user_id, 0, 2);
 
-            if ($status)
+            if ($result)
             {
-                $f_code = 7;
+                $msg        = 'bw_return';
+                $msg_type   = 'success';
             }
         }
 
-        $this->session->set_flashdata('borrowing_status', $f_code);
+        $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
         redirect('catalog');
     }
 
     public function confirm($book_id = -1, $user_id = -1)
     {
-        $f_code = 0;
+        $msg        = 'auth_err';
+        $msg_type   = 'error';
 
-        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
+        if ($this->session->is_librarian)
         {
-            $status = $this->catalog_model->update_book_status($book_id, $user_id, 1, 0);
+            $msg    = 'misc_err';
+            $result = $this->catalog_model->update_book_status($book_id, $user_id, 1, 0);
 
-            if ($status)
+            if ($result)
             {
-                $f_code = 3;
+                $msg        = 'bw_confirm';
+                $msg_type   = 'success';
             }
         }
 
-        $this->session->set_flashdata('borrowing_status', $f_code);
+        $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
         redirect('catalog');
     }
 
@@ -107,18 +116,26 @@ class Catalog extends CI_Controller {
                     $this->load->view('templates/footer');
                 }
             }
-
-
         }
         else if ($this->session->logged_in && $book_id > 0)
         {
-            $status = $this->catalog_model->update_book_status($book_id, $this->session->user_id, 2, 1);
-            $this->session->set_flashdata('borrowing_status', $status);
+            $result     = $this->catalog_model->update_book_status($book_id, $this->session->user_id, 2, 1);
+            $msg        = 'misc_err';
+            $msg_type   = 'error';
+
+            if ($result)
+            {
+                $msg        = 'bw_reserve';
+                $msg_type   = 'success';
+            }
+
+            $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
             redirect('catalog');
         }
         else
         {
-            // Handle invalid operation
+            $this->session->set_flashdata('borrowing_status', array('auth_err', 'error'));
+            redirect('catalog');
         }
     }
 }

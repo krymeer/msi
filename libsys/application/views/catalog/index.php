@@ -4,8 +4,8 @@
         <?php echo $this->lang->line('catalog__sections_main_text'); ?>
 
     <?php if (isset($this->session->borrowing_status)): ?>
-        <div class="alert <?php echo ($this->session->borrowing_status % 2 != 0 ? 'success' : 'error'); ?>">
-            <?php echo $this->lang->line('catalog__borrowing_status')[(int)$this->session->borrowing_status]; ?>
+        <div class="alert <?php echo $this->session->borrowing_status[1]; ?>">
+            <?php echo $this->lang->line('catalog__borrowing_status')[$this->session->borrowing_status[0]]; ?>
         </div>
     <?php endif; ?>
 

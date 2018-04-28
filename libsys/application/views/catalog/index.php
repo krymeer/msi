@@ -38,6 +38,8 @@
                 <?php elseif ($b->book_status === "1" && $this->session->is_librarian): ?>
                     <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>/confirm"><?php echo $this->lang->line('catalog__action_confirm'); ?></a>
                     <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>/cancel"><?php echo $this->lang->line('catalog__action_cancel'); ?></a>
+                <?php elseif ($b->book_status === "0" && $this->session->is_librarian ): ?>
+                    <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>/return"><?php echo $this->lang->line('catalog__action_return'); ?></a>
                 <?php endif; ?>
 
                 </td>

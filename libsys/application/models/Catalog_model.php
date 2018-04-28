@@ -17,15 +17,8 @@ class Catalog_model extends CI_model {
         return $this->db->query($q, $id);
     }
 
-    public function update_book_status($book_id, $user_id, $code)
+    public function update_book_status($book_id, $user_id, $curr_code, $new_code)
     {
-        $curr_code = $code + 1;
-
-        if ($code === 2)
-        {
-            $curr_code = 1;
-        }
-
         $q = 'SELECT * FROM books WHERE book_status = ? AND book_id = ?';
 
         if (empty($this->db->query($q, array($curr_code, $book_id))->result()))
@@ -42,6 +35,6 @@ class Catalog_model extends CI_model {
 
         $q = 'UPDATE books SET book_status = ?, book_user_id = ? WHERE book_id = ?';
 
-        return $this->db->query($q, array($code, $user_id, $book_id));
+        return $this->db->query($q, array($new_code, $user_id, $book_id));
     }
 }

@@ -20,7 +20,7 @@ class Catalog extends CI_Controller {
         echo link_tag(asset_url().'css/catalog.css');
     }
 
-    public function cancel($id)
+    public function cancel()
     {
         if ($this->session->is_librarian && count($this->uri->segments) === 4 && is_numeric($this->uri->segment(3)) && is_numeric($this->uri->segment(4)))
         {
@@ -33,9 +33,31 @@ class Catalog extends CI_Controller {
             }
 
             $this->session->set_flashdata('borrowing_status', $f_code);
-            redirect('catalog');
         }
 
+        redirect('catalog');
+    }
+
+    public function return($book_id = -1, $user_id = -1)
+    {
+        if ($this->session->is_librarian && $book_id > 0 && $user_id > 0)
+        {
+            $status = $this->catalog_model->update_book_status($book_id, $user_id, 0, 2);
+            $f_code = 0;
+
+            if ($status)
+            {
+                $f_code = 7;
+            }
+
+            $this->session->set_flashdata('borrowing_status', $f_code);
+        }
+        else
+        {
+            // Handle illegal operation
+        }
+
+        redirect('catalog');
     }
 
     public function confirm($id)
@@ -51,19 +73,21 @@ class Catalog extends CI_Controller {
             }
 
             $this->session->set_flashdata('borrowing_status', $f_code);
-            redirect('catalog');
         }
+
+        redirect('catalog');
     }
 
     public function borrow($id)
     {
-        if ($this->session->is_librarian && count($this->uri->segments) === 4 && ($this->uri->segment(4) === 'confirm' || $this->uri->segment(4) === 'cancel'))
+        if ($this->session->is_librarian && count($this->uri->segments) === 4 && ($this->uri->segment(4) === 'confirm' || $this->uri->segment(4) === 'cancel' || $this->uri->segment(4) === 'return'))
         {
             $b = $this->catalog_model->get_book($id)->result();
 
             if (empty($b))
             {
                 $this->session->set_flashdata('borrowing_status', 0);
+                redirect('catalog');
             }
             else
             {

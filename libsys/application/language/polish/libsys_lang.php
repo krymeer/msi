@@ -4,16 +4,19 @@ $lang['catalog__title']                             = 'Katalog';
 $lang['catalog__action_borrow']                     = 'Wypożycz';
 $lang['catalog__action_cancel']                     = 'Anuluj';
 $lang['catalog__action_confirm']                    = 'Potwierdź';
+$lang['catalog__action_return']                     = 'Zwróć';
 $lang['catalog__book_author']                       = 'Autor';
 $lang['catalog__book_status']                       = 'Status';
 $lang['catalog__book_title']                        = 'Tytuł';
-$lang['catalog__borrowing_status']                  = ['Wystąpił błąd. Spróbuj ponownie.', 'Książka została zarezerwowana.', 'Nie ma użytkownika o podanym identyfikatorze!', 'Wypożyczenie książki zostało potwierdzone.', '', 'Rezerwacja książki została anulowana.'];
+$lang['catalog__borrowing_status']                  = ['Wystąpił błąd. Spróbuj ponownie.', 'Książka została zarezerwowana.', 'Nie ma użytkownika o podanym identyfikatorze!', 'Wypożyczenie książki zostało potwierdzone.', '', 'Rezerwacja książki została anulowana.', '', 'Zwrócenie książki zostało potwierdzone.'];
 $lang['catalog__sections_main_title']               = 'Książki';
 $lang['catalog__sections_main_text']                = 'Na poniższej liście znajdują się wszystkie książki zarejestrowane w systemie. Odwiedzaj tę stronę regularnie, aby nie przegapić żadnej pozycji!';
 $lang['catalog__section_confirm_title']             = 'Potwierdź wypożyczenie.';
 $lang['catalog__borrowing_confirm_box']             = 'Czy potwierdzasz wypożyczenie?';
 $lang['catalog__section_cancel_title']              = 'Anuluj rezerwację.';
 $lang['catalog__borrowing_cancel_box']              = 'Czy na pewno chcesz anulować rezerwację?';
+$lang['catalog__section_return_title']              = 'Zwróć książkę.';
+$lang['catalog__borrowing_return_box']              = 'Czy potwierdzasz zwrot książki?';
 
 $lang['account__title']                             = 'Moje konto';
 $lang['account__section_librarian_title']           = 'Bibliotekarz.';
@@ -59,3 +62,6 @@ $lang['alerts__account_deleted']                    = 'Twoje konto zostało usun
 $lang['months_genitives']                           = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
 $lang['year_genitive']                              = 'roku';
 $lang['hour_abbreviated']                           = 'godz.';
+
+$lang['book']                                       = 'Książka';
+$lang['user']                                       = 'Użytkownik';

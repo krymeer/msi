@@ -3,8 +3,8 @@
         <?php echo $this->lang->line('catalog__section_cancel_title'); ?>
     </h2>
     <div class="section-content">
-        <strong>Książka:</strong> <?php echo $book_author; ?>, <i><?php echo $book_title; ?></i><br>
-        <strong>Użytkownik:</strong> <?php echo $book_user; ?>
+        <strong><? echo $this->lang->line('book'); ?>:</strong> <?php echo $book_author; ?>, <i><?php echo $book_title; ?></i><br>
+        <strong><? echo $this->lang->line('user'); ?>:</strong> <?php echo $book_user; ?>
 
         <div class="choice-box">
             <?php echo $this->lang->line('catalog__borrowing_cancel_box'); ?>

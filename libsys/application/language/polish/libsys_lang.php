@@ -19,7 +19,7 @@ $lang['account__title']                             = 'Moje konto';
 $lang['account__section_librarian_title']           = 'Bibliotekarz.';
 $lang['account__section_librarian_text']            = 'Moduł przeznaczony wyłącznie dla bibliotekarza.';
 $lang['account__section_main_title']                = 'Cześć';        
-$lang['account__section_main_text']                 = 'Możesz już korzystać z wszystkich niezliczonych funkcjonalności tego systemu.';
+$lang['account__section_main_text']                 = 'To jest strona główna Twojego profilu ‒ właśnie tutaj możesz dostosować ustawienia idealne właśnie dla Ciebie.';
 $lang['account__section_login_title']               = 'Nie jesteś zalogowany.';
 $lang['account__section_login_text']                = 'Wprowadź poniżej swoje dane, aby skorzystać z funkcjonalności systemu.';
 $lang['account__section_login_form_label_1']        = 'Nazwa użytkownika';
@@ -37,7 +37,7 @@ $lang['account__section_removal_success_text']      = 'Mamy nadzieję, że spotk
 
 $lang['home__title']                                = 'Strona główna';
 $lang['home__section_main_title']                   = 'Witaj świecie!';
-$lang['home__section_main_text']                    = 'Nazywam się Krzysztof, a to jest test mojej strony. Witryna ta powstaje w bólach, gdyż taki ze mnie grafik, jak z koziej d**y trąba.';
+$lang['home__section_main_text']                    = 'Witaj na stronie głównej <strong>libsys</strong> ‒ nowoczesnego narzędzia do zarządzania zasobami bibliotecznymi.<br>Skorzystaj z menu, aby odkryć wszystkie niezliczone funkcjonalności systemu!';
 
 $lang['news__title']                                = 'Aktualności';
 $lang['map__title']                                 = 'Lokalizacje';

@@ -55,6 +55,12 @@ ul {
     list-style: none;
 }
 
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .noselect {
     -webkit-touch-callout: none;
       -webkit-user-select: none;

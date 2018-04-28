@@ -19,7 +19,7 @@ $lang['account__title']                             = 'Moje konto';
 $lang['account__section_librarian_title']           = 'Bibliotekarz.';
 $lang['account__section_librarian_text']            = 'Moduł przeznaczony wyłącznie dla bibliotekarza.';
 $lang['account__section_main_title']                = 'Cześć';        
-$lang['account__section_main_text']                 = 'To jest strona główna Twojego profilu ‒ właśnie tutaj możesz dostosować ustawienia idealne właśnie dla Ciebie.';
+$lang['account__section_main_text']                 = 'To jest strona główna Twojego profilu ‒ tutaj możesz dostosować ustawienia idealne właśnie dla Ciebie.';
 $lang['account__section_login_title']               = 'Nie jesteś zalogowany.';
 $lang['account__section_login_text']                = 'Wprowadź poniżej swoje dane, aby skorzystać z funkcjonalności systemu.';
 $lang['account__section_login_form_label_1']        = 'Nazwa użytkownika';
@@ -40,6 +40,10 @@ $lang['home__section_main_title']                   = 'Witaj świecie!';
 $lang['home__section_main_text']                    = 'Witaj na stronie głównej <strong>libsys</strong> ‒ nowoczesnego narzędzia do zarządzania zasobami bibliotecznymi.<br>Skorzystaj z menu, aby odkryć wszystkie niezliczone funkcjonalności systemu!';
 
 $lang['news__title']                                = 'Aktualności';
+$lang['news__section_main_title']                   = 'Co nowego?';
+$lang['news__read_more']                            = 'Czytaj więcej';
+$lang['news__go_back']                              = 'Wróć do Aktualności';
+
 $lang['map__title']                                 = 'Lokalizacje';
 $lang['contact__title']                             = 'Kontakt';
 $lang['logout__title']                              = 'Wyloguj się';
@@ -51,3 +55,7 @@ $lang['word_no']                                    = 'Nie';
 
 $lang['alerts__redirect']                           = 'Przekierowanie nastąpi za';
 $lang['alerts__account_deleted']                    = 'Twoje konto zostało usunięte.';
+
+$lang['months_genitives']                           = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+$lang['year_genitive']                              = 'roku';
+$lang['hour_abbreviated']                           = 'godz.';

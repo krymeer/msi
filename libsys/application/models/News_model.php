@@ -9,8 +9,20 @@ class News_model extends CI_Model {
     {
         if (!$slug)
         {
-            $query = $this->db->get('news');
-            return $query->result_array();
+            $query  = $this->db->get('news');
+            $news   = $query->result_array();
+
+            for ($k = 0; $k < count($news); $k++)
+            {
+                $words_array = explode(' ', $news[$k]['text']);
+
+                if (count($words_array) > 20)
+                {
+                    $news[$k]['text'] = implode(' ', array_slice($words_array, 0, 20)).'...';
+                }
+            }
+
+            return $news;
         }
 
         $query = $this->db->get_where('news', array('slug' => $slug));

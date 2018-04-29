@@ -4,6 +4,7 @@ button, a.button {
     color: #fff;
     padding: 4.375px 8.75px;
     cursor: pointer;
+    outline: none;
 }
 
 button:hover, a.button:hover {

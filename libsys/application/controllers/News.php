@@ -12,10 +12,10 @@ class News extends CI_Controller {
 
     private function get_full_date($news)
     {
-        $date           = explode(' ', $news['date']);
-        $dmy            = explode('-', $date[0]);
-        $hms            = explode(':', $date[1]);
-        $news['date']   = $dmy[2].' '.$this->lang->line('months_genitives')[(int)$dmy[1]-1].' '.$dmy[0].' '.$this->lang->line('year_genitive').', '.$this->lang->line('hour_abbreviated').' '.(int)$hms[0].':'.$hms[1];
+        $date               = explode(' ', $news['news_date']);
+        $dmy                = explode('-', $date[0]);
+        $hms                = explode(':', $date[1]);
+        $news['news_date']  = $dmy[2].' '.$this->lang->line('months_genitives')[(int)$dmy[1]-1].' '.$dmy[0].' '.$this->lang->line('year_genitive').', '.$this->lang->line('hour_abbreviated').' '.(int)$hms[0].':'.$hms[1];
 
         return $news;
     }
@@ -33,42 +33,71 @@ class News extends CI_Controller {
 
     public function view($slug = null)
     {
-        $data['news_item']  = $this->news_model->get_news($slug);
-        $data['news_item']  = $this->get_full_date($data['news_item']);
+        $data['news_item']  = $this->news_model->get_news(urldecode($slug))->row_array();
 
         if (empty($data['news_item']))
         {
-            show_404();
+            show_libsys_error(404);
         }
+        else
+        {
+            $data['news_item']  = $this->get_full_date($data['news_item']);
+            $data['title']      = $this->lang->line('news__title');
+            echo link_tag(asset_url().'css/news_item.css');
 
-        $data['title'] = $this->lang->line('news__title');
-        echo link_tag(asset_url().'css/news_item.css');
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/view', $data);
-        $this->load->view('templates/footer');
+            $this->load->view('templates/header', $data);
+            $this->load->view('news/view', $data);
+            $this->load->view('templates/footer');
+        }
     }
 
     public function create()
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $data['title'] = 'Create a news item';
-
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('text', 'Text', 'required');
-
-        if (!$this->form_validation->run()) 
+        if ($this->session->is_librarian)
         {
-            $this->load->view('templates/header', $data);
-            $this->load->view('news/create');
-            $this->load->view('templates/footer');
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            echo link_tag(asset_url().'css/news_create.css');
+
+            $data['title'] = $this->lang->line('news__title');
+
+            $this->form_validation->set_rules(
+                'news_title', 
+                $this->lang->line('news__section_add_form_label_1'), 
+                'required|min_length[4]|max_length[48]',
+                array(
+                    'required'      => $this->lang->line('news__section_add_form_label_1__err_req'),
+                    'min_length'    =>  sprintf($this->lang->line('news__section_add_form_label_1__min_len'), '{param}'),
+                    'max_length'    =>  sprintf($this->lang->line('news__section_add_form_label_1__max_len'), '{param}')
+                )
+            );
+            $this->form_validation->set_rules(
+                'news_text',
+                $this->lang->line('news__section_add_form_label_2'),
+                'required|min_length[50]|max_length[10000]',
+                array(
+                    'required'      => $this->lang->line('news__section_add_form_label_2__err_req'),
+                    'min_length'    =>  sprintf($this->lang->line('news__section_add_form_label_2__min_len'), '{param}'),
+                    'max_length'    =>  sprintf($this->lang->line('news__section_add_form_label_2__max_len'), '{param}')
+                )
+            );
+
+            if (!$this->form_validation->run()) 
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('news/create');
+                $this->load->view('templates/footer');
+            }
+            else
+            {
+                $this->news_model->set_news();
+                $this->session->set_flashdata('news_status', 'success');
+                redirect('news/create');
+            }
         }
         else
         {
-            $this->news_model->set_news();
-            $this->load->view('news/success');
+            redirect('news');
         }
     }
 }

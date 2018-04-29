@@ -9,38 +9,43 @@ class News_model extends CI_Model {
     {
         if (!$slug)
         {
-            $query  = $this->db->get('news');
-            $news   = $query->result_array();
+            $q      = 'SELECT * FROM news ORDER BY news_date DESC';
+            $news   = $this->db->query($q)->result_array();
 
             for ($k = 0; $k < count($news); $k++)
             {
-                $words_array = explode(' ', $news[$k]['text']);
+                $words_array = explode(' ', $news[$k]['news_text']);
 
                 if (count($words_array) > 20)
                 {
-                    $news[$k]['text'] = implode(' ', array_slice($words_array, 0, 20)).'...';
+                    $news[$k]['news_text'] = implode(' ', array_slice($words_array, 0, 20)).'...';
                 }
             }
 
             return $news;
         }
 
-        $query = $this->db->get_where('news', array('slug' => $slug));
-        return $query->row_array();
+        $q = 'SELECT * FROM news WHERE news_slug = ?';
+        return $this->db->query($q, $slug);
     }
 
     public function set_news()
     {
         $this->load->helper('url');
+        $title      = htmlentities($this->input->post('news_title'));
+        $text       = nl2br(htmlentities($this->input->post('news_text')));
+        $author     = $this->session->username;
+        $id         = 1;
+        $q          = 'SELECT MAX(news_id) AS max_id FROM news';
+        $r          = $this->db->query($q)->result();
 
-        $slug = url_title($this->input->post('title'), 'dash', true);
+        if (!empty($r) && is_numeric($r[0]->max_id))
+        {
+            $id += intval($r[0]->max_id);
+        }
 
-        $data = array(
-            'title' => $this->input->post('title'),
-            'slug' => $slug,
-            'text' => $this->input->post('text')
-        );
-
-        return $this->db->insert('news', $data);
+        $slug       = url_title($title, 'dash', true).'-'.$id;
+        $q          = 'INSERT INTO news (news_title, news_author, news_slug, news_text) VALUES (?, ?, ?, ?)';
+        return $this->db->query($q, array($title, $author, $slug, $text));
     }
 }

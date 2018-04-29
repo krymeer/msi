@@ -136,8 +136,11 @@ $autoload['model'] = array();
 
 /*
 |
-| Getting access to the static files' directory path
-| See: https://stackoverflow.com/questions/6630770/where-do-i-put-image-files-css-js-etc-in-codeigniter
+| Custom helpers:
+| - getting access to the static files' directory path
+| - displaying the error page
+|
+| based on https://stackoverflow.com/questions/6630770/where-do-i-put-image-files-css-js-etc-in-codeigniter
 |
 */
-$autoload['helper'] = array('url', 'utility');
+$autoload['helper'] = array('url', 'utility', 'error');

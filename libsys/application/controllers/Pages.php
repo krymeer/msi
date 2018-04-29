@@ -12,21 +12,22 @@ class Pages extends CI_Controller {
     {
         if (!(file_exists(APPPATH.'views/pages/'.$page.'.php')))
         {
-            $data['error_code'] = 404;
-            $data['title']      = $this->lang->line('error__title');
-            $page               = $data['error_code'];
-        }
-        else if ($page === 'home')
-        {
-            $data['title'] = $this->lang->line('home__title');
+            show_libsys_error(404);
         }
         else
         {
-            $data['title'] = ucfirst($page);
-        }
+            if ($page === 'home')
+            {
+                $data['title'] = $this->lang->line('home__title');
+            }
+            else
+            {
+                $data['title'] = ucfirst($page);
+            }
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/footer', $data);
+            $this->load->view('templates/header', $data);
+            $this->load->view('pages/'.$page, $data);
+            $this->load->view('templates/footer', $data);
+        }
     }
 }

@@ -30,4 +30,8 @@
         grid-column: 2;
         justify-self: end;
     }
+
+    #page-account-login .alert {
+        max-width: 500px;
+    }
 }

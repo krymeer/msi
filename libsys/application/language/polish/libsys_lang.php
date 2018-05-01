@@ -70,7 +70,22 @@ $lang['news__addition_status_success']              = 'Wpis został dodany.';
 $lang['news__addition_status_error']                = 'Wystąpił problem podczas dodawania wpisu.';
 
 $lang['map__title']                                 = 'Lokalizacje';
+
+$lang['field_required']                             = 'Pole &#x201e;%s&#x201d; jest wymagane.';
+$lang['field_invalid_chars']                        = 'Pole &#x201e;%s&#x201d; zawiera niedozwolone znaki.';
+
 $lang['contact__title']                             = 'Kontakt';
+$lang['contact__section_main_title']                = 'Poznajmy się.';
+$lang['contact__section_main_text']                 = 'Masz pytania związane z systemem <strong>libsys</strong>? Wiesz, jak udoskonalić jego działanie? Znalazłeś błąd? Jeżeli Twoja odpowiedź na co najmniej jedno z tych pytań jest twierdząca, nie wahaj się &#x2012; napisz do mnie już dziś!';
+$lang['contact__section_main_form_label_1']         = 'Imię i nazwisko';
+$lang['contact__section_main_form_label_2']         = 'E-mail';
+$lang['contact__section_main_form_label_3']         = 'Wiadomość';
+$lang['contact__section_main_form_submit']          = 'Wyślij';
+$lang['contact__section_main_form_err_email']       = 'Musisz podać poprawny adres e-mail.';
+$lang['contact__section_main_form_err_msg']         = 'Wiadomość musi składać się z co najmniej %s znaków.';
+$lang['contact__form_status_success']               = 'Twoja wiadomość została wysłana.';
+$lang['contact__form_status_error']                 = 'Wystąpił błąd. Spróbuj ponownie.';
+
 $lang['logout__title']                              = 'Wyloguj się';
 $lang['error__title']                               = 'Błąd';
 $lang['error_404__section_main_text']               = 'Żądana strona nie została znaleziona.';

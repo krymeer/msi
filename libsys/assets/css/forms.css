@@ -3,6 +3,17 @@ form label {
     color: #888;
 }
 
+form .asterisk {
+    color: #eb5e55;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+form .asterisk-note {
+    color: #888;
+    font-size: 9px;
+}
+
 form textarea {
     resize: none;
 }
@@ -25,6 +36,10 @@ form button[type="submit"] {
 @media only screen and (min-width: 768px) {
     form label {
         font-size: 13px;
+    }
+
+    form .asterisk-note {
+        font-size: 11px;
     }
 
     form textarea,

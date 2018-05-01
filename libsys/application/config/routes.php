@@ -55,6 +55,7 @@ $route['news']                    = 'news';
 $route['news/create']             = 'news/create';
 $route['news/(:any)']             = 'news/view/$1';
 $route['catalog']                 = 'catalog';
+$route['contact']                 = 'contact';
 $route['account']                 = 'account';
 $route['account/remove']          = 'account/remove';
 $route['account/remove/success']  = 'account/removal_success';

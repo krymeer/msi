@@ -1,0 +1,43 @@
+.page-contact form {
+    margin: 15px 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .page-contact form button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .page-contact form textarea {
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .page-contact form {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-auto-flow: row dense;
+        max-width: 500px;
+    }
+
+    .page-contact form button {
+        margin-top: 0;
+        grid-column: 2;
+        justify-self: end;
+    }
+
+    .page-contact form textarea {
+        height: 280px;
+    }
+
+    .page-contact form label,
+    .page-contact form textarea,
+    .page-contact form input {
+        grid-column: span 2;
+    }
+
+    .page-contact .alert {
+        max-width: 500px;
+    }
+}

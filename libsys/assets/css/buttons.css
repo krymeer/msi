@@ -25,6 +25,19 @@ button.dark:hover, a.button.dark:hover {
     color: #eb5e55;
 }
 
+button[disabled], a.button[disabled],
+button.dark[disabled] a.button.dark[disabled] {
+    cursor: default;
+}
+
+button[disabled], a.button[disabled] {
+    background: #f29892;
+}
+
+button.dark[disabled] a.button.dark[disabled] {
+    background: #828484;
+}
+
 @media only screen and (min-width: 768px) {
     button, a.button {
         padding: 5px 10px;

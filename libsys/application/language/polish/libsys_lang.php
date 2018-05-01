@@ -85,6 +85,7 @@ $lang['contact__section_main_form_err_email']       = 'Musisz podać poprawny ad
 $lang['contact__section_main_form_err_msg']         = 'Wiadomość musi składać się z co najmniej %s znaków.';
 $lang['contact__form_status_success']               = 'Twoja wiadomość została wysłana.';
 $lang['contact__form_status_error']                 = 'Wystąpił błąd. Spróbuj ponownie.';
+$lang['contact__form_mail_subject']                 = 'Wiadomość z systemu libsys';
 
 $lang['logout__title']                              = 'Wyloguj się';
 $lang['error__title']                               = 'Błąd';

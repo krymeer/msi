@@ -16,14 +16,7 @@ class Pages extends CI_Controller {
         }
         else
         {
-            if ($page === 'home')
-            {
-                $data['title'] = $this->lang->line('home__title');
-            }
-            else
-            {
-                $data['title'] = ucfirst($page);
-            }
+            $data['title'] = $this->lang->line($page.'__title');
 
             $this->load->view('templates/header', $data);
             $this->load->view('pages/'.$page, $data);

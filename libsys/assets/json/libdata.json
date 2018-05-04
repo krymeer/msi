@@ -1,0 +1,382 @@
+{ "libraries": [
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-1",
+        "number": 1,
+        "address": "Sztabowa 98, Wrocław",
+        "location":
+        {
+            "lat": 51.08691870000001,
+            "lng": 17.02208900000005
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-2",
+        "number": 2,
+        "address": "Eluarda 51-55, Wrocław",
+        "location":
+        {
+            "lat": 51.1488172,
+            "lng": 16.860441700000024
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-3",
+        "number": 3,
+        "address": "Morelowskiego 43, Wrocław",
+        "location":
+        {
+            "lat": 51.07261870000001,
+            "lng": 16.969842900000003
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-4",
+        "number": 4,
+        "address": "Wieczysta 105, Wrocław",
+        "location":
+        {
+            "lat": 51.0866029,
+            "lng": 17.039986
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-5",
+        "number": 5,
+        "address": "Namysłowska 8, Wrocław",
+        "location":
+        {
+            "lat": 51.126556,
+            "lng": 17.045621900000015
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-6",
+        "number": 6,
+        "address": "Lwowska 21, Wrocław",
+        "location":
+        {
+            "lat": 51.09917189999999,
+            "lng": 17.011172999999985
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-7",
+        "number": 7,
+        "address": "Suwalska 5, Wrocław",
+        "location":
+        {
+            "lat": 51.15378760000001,
+            "lng": 16.928274999999985
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-8",
+        "number": 8,
+        "address": "Głogowska 9-11, Wrocław",
+        "location":
+        {
+            "lat": 51.116769,
+            "lng": 17.003231000000028
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-9",
+        "number": 9,
+        "address": "Wielkopolska 16, Wrocław",
+        "location":
+        {
+            "lat": 51.140795,
+            "lng": 16.886108899999954
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-10",
+        "number": 10,
+        "address": "Jelenia 7, Wrocław",
+        "location":
+        {
+            "lat": 51.1247054,
+            "lng": 16.99811390000002
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-11",
+        "number": 11,
+        "address": "Krzywoustego 286, Wrocław",
+        "location":
+        {
+            "lat": 51.145637,
+            "lng": 17.11007399999994
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-12",
+        "number": 12,
+        "address": "Piłsudskiego 105, Wrocław",
+        "location":
+        {
+            "lat": 51.09898440000001,
+            "lng": 17.036646099999984
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-13",
+        "number": 13,
+        "address": "Świdnicka 19, Wrocław",
+        "location":
+        {
+            "lat": 51.10706889999999,
+            "lng": 17.031796999999983
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-15",
+        "number": 15,
+        "address": "Tymiankowa 3, Wrocław",
+        "location":
+        {
+            "lat": 51.1753543,
+            "lng": 16.99445639999999
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-16",
+        "number": 16,
+        "address": "Kolista 17, Wrocław",
+        "location":
+        {
+            "lat": 51.135033,
+            "lng": 16.971741000000065
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-17",
+        "number": 17,
+        "address": "Nenckiego 136a, Wrocław",
+        "location":
+        {
+            "lat": 51.0567959,
+            "lng": 17.024772900000016
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-18",
+        "number": 18,
+        "address": "Grabiszyńska 236a, Wrocław",
+        "location":
+        {
+            "lat": 51.0947164,
+            "lng": 16.982263800000055
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-20",
+        "number": 20,
+        "address": "Majakowskiego 34/1a, Wrocław",
+        "location":
+        {
+            "lat": 51.1260755,
+            "lng": 16.947894399999996
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-22",
+        "number": 22,
+        "address": "Chociebuska 8-10, Wrocław",
+        "location":
+        {
+            "lat": 51.1160129,
+            "lng": 16.95820279999998
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-23",
+        "number": 23,
+        "address": "bulwar Ikara 29-31, Wrocław",
+        "location":
+        {
+            "lat": 51.1262619,
+            "lng": 16.970058999999992
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-26",
+        "number": 26,
+        "address": "Olszewskiego 85a, Wrocław",
+        "location":
+        {
+            "lat": 51.1012446,
+            "lng": 17.10503749999998
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-27",
+        "number": 27,
+        "address": "Łokietka 13, Wrocław",
+        "location":
+        {
+            "lat": 51.118753,
+            "lng": 17.03580809999994
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-29",
+        "number": 29,
+        "address": "Reja 1, Wrocław",
+        "location":
+        {
+            "lat": 51.1137779,
+            "lng": 17.057655899999986
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-31",
+        "number": 31,
+        "address": "Strachocińska 88, Wrocław",
+        "location":
+        {
+            "lat": 51.1066639,
+            "lng": 17.14477599999998
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-32",
+        "number": 32,
+        "address": "8 Maja 26, Wrocław",
+        "location":
+        {
+            "lat": 51.11158289999999,
+            "lng": 17.09188800000004
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-37",
+        "number": 37,
+        "address": "Sempołowskiej 54a, Wrocław",
+        "location":
+        {
+            "lat": 51.1032421,
+            "lng": 17.109916099999964
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-40",
+        "number": 40,
+        "address": "Przybyszewskiego 59, Wrocław",
+        "location":
+        {
+            "lat": 51.137769,
+            "lng": 17.060940800000026
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-41",
+        "number": 41,
+        "address": "Sołtysowicka 48, Wrocław",
+        "location":
+        {
+            "lat": 51.1485063,
+            "lng": 17.075500199999965
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-42",
+        "number": 42,
+        "address": "Serbska 5a, Wrocław",
+        "location":
+        {
+            "lat": 51.134875,
+            "lng": 17.021609000000012
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-44",
+        "number": 44,
+        "address": "Powstańców Śląskich 210, Wrocław",
+        "location":
+        {
+            "lat": 51.0765136,
+            "lng": 17.00754119999999
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-45",
+        "number": 45,
+        "address": "Traugutta 82, Wrocław",
+        "location":
+        {
+            "lat": 51.1024714,
+            "lng": 17.051887999999963
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-46",
+        "number": 46,
+        "address": "Tarnogórska 1, Wrocław",
+        "location":
+        {
+            "lat": 51.075176,
+            "lng": 17.085609999999974
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-47",
+        "number": 47,
+        "address": "Polna 4, Wrocław",
+        "location":
+        {
+            "lat": 51.0595379,
+            "lng": 17.081511999999975
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-54",
+        "number": 54,
+        "address": "Jesienna 22, Wrocław",
+        "location":
+        {
+            "lat": 51.071332,
+            "lng": 17.00275099999999
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-55",
+        "number": 55,
+        "address": "Zielińskiego 2, Wrocław",
+        "location":
+        {
+            "lat": 51.1019786,
+            "lng": 17.025605199999973
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-57",
+        "number": 57,
+        "address": "Szewska 78, Wrocław",
+        "location":
+        {
+            "lat": 51.1083809,
+            "lng": 17.033388999999943
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-58",
+        "number": 58,
+        "address": "Teatralny 5, Wrocław",
+        "location":
+        {
+            "lat": 51.1058271,
+            "lng": 17.032857899999954
+        }
+    },
+    {
+        "url": "http://www.biblioteka.wroc.pl/filie/filia-nr-63",
+        "number": 63,
+        "address": "Wyzwolenia 4, Wrocław",
+        "location":
+        {
+            "lat": 51.1422918,
+            "lng": 16.991432499999974
+        }
+    }
+] }

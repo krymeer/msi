@@ -16,6 +16,11 @@ class Pages extends CI_Controller {
         }
         else
         {
+            if (file_exists(APPPATH.'../assets/css/'.$page.'.css'))
+            {
+                echo link_tag(asset_url().'css/'.$page.'.css');
+            }
+
             $data['title'] = $this->lang->line($page.'__title');
 
             $this->load->view('templates/header', $data);

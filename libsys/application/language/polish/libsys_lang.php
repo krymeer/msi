@@ -70,6 +70,10 @@ $lang['news__addition_status_success']              = 'Wpis został dodany.';
 $lang['news__addition_status_error']                = 'Wystąpił problem podczas dodawania wpisu.';
 
 $lang['map__title']                                 = 'Lokalizacje';
+$lang['map__section_main_text']                     = 'Użyj poniższej mapy, aby znaleźć biblioteki w Twoim otoczeniu!';
+$lang['map__section_main_title']                    = 'Gdzie nas znaleźć?';
+$lang['map__user_location']           	            = 'Twoja lokalizacja';
+$lang['map__library_prefix']                        = 'Filia nr';
 
 $lang['field_required']                             = 'Pole &#x201e;%s&#x201d; jest wymagane.';
 $lang['field_invalid_chars']                        = 'Pole &#x201e;%s&#x201d; zawiera niedozwolone znaki.';

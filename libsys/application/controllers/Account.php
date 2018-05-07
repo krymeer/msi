@@ -77,13 +77,25 @@ class Account extends CI_Controller {
         {
             $this->load->helper('form');
             $this->load->library('form_validation');
-            $this->config->set_item('language', 'polish');
-            $this->form_validation->set_rules('username', $this->lang->line('account__section_login_form_label_1'), 'required|alpha_dash');
-            $this->form_validation->set_rules('password', $this->lang->line('account__section_login_form_label_2'), 'required');
+            $this->form_validation->set_rules(
+                'username', 
+                $this->lang->line('account__section_login_form_label_1'), 
+                'required',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}')
+                )
+            );
+            $this->form_validation->set_rules(
+                'password', 
+                $this->lang->line('account__section_login_form_label_2'), 
+                'required',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}')
+                )
+            );
 
             echo link_tag(asset_url().'css/login.css');
             $data['title'] = $this->class_title;
-
 
             if ($this->form_validation->run())
             {
@@ -91,7 +103,7 @@ class Account extends CI_Controller {
 
                 if (empty($auth->result()) || !password_verify($this->input->post('password'), $auth->result()[0]->pass))
                 {
-                    $data['auth_err'] = $this->lang->line('form_validation_incorrect_data');
+                    $data['auth_err'] = $this->lang->line('account__form_validation_incorrect_data');
                 }
                 else
                 {
@@ -116,7 +128,7 @@ class Account extends CI_Controller {
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect('');
+        redirect('/');
     }
 
     public function view($page = 'login')

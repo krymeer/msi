@@ -45,7 +45,8 @@ $lang['account__section_remove_title']              = 'Opuść nas.';
 $lang['account__section_remove_text']               = 'Procedura spowoduje usunięcie większości danych powiązanych z Tobą w systemie.';
 $lang['account__section_remove_box']                = 'Czy na pewno chcesz usunąć swoje konto?<br><strong><u>Operacja nieodwracalna.</u></strong>';
 $lang['account__section_removal_success_title']     = 'Opuściłeś nas.'; 
-$lang['account__section_removal_success_text']      = 'Mamy nadzieję, że spotkamy się już wkrótce!'; 
+$lang['account__section_removal_success_text']      = 'Mamy nadzieję, że spotkamy się już wkrótce!';
+$lang['account__form_validation_incorrect_data']    = 'Nieprawidłowa nazwa użytkownika lub hasło.';
 
 $lang['home__title']                                = 'Strona główna';
 $lang['home__section_main_title']                   = 'Witaj świecie!';

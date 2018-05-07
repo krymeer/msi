@@ -26,6 +26,14 @@ $lang['catalog__section_cancel_title']              = 'Anuluj rezerwację.';
 $lang['catalog__borrowing_cancel_box']              = 'Czy na pewno chcesz anulować rezerwację?';
 $lang['catalog__section_return_title']              = 'Zwróć książkę.';
 $lang['catalog__borrowing_return_box']              = 'Czy potwierdzasz zwrot książki?';
+$lang['catalog__section_add_title']                 = 'Dodaj książkę';
+$lang['catalog__section_add_text']                  = 'Użyj poniższego formularza, aby dodać nową książkę do systemu.';
+$lang['catalog__section_add_notice']                = 'Wszystkie pola są wymagane.';
+$lang['catalog__section_add_form_label_1']          = 'Tytuł';
+$lang['catalog__section_add_form_label_2']          = 'Imię (imiona) autora';
+$lang['catalog__section_add_form_label_3']          = 'Nazwisko autora';
+$lang['catalog__section_add_form_label_4']          = 'ISBN';
+$lang['catalog__section_add_form_label_5']          = 'EAN-13';
 
 $lang['account__title']                             = 'Moje konto';
 $lang['account__section_librarian_title']           = 'Bibliotekarz.';
@@ -98,6 +106,7 @@ $lang['error_404__section_main_text']               = 'Żądana strona nie zosta
 
 $lang['word_yes']                                   = 'Tak';
 $lang['word_no']                                    = 'Nie';
+$lang['word_add']                                   = 'Dodaj';
 
 $lang['alerts__redirect']                           = 'Przekierowanie nastąpi za';
 $lang['alerts__account_deleted']                    = 'Twoje konto zostało usunięte.';

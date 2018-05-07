@@ -31,7 +31,7 @@
                 </td>
              
             <?php if ($this->session->logged_in): ?>    
-                <td>
+                <td id="book-action">
 
                 <?php if ($b->book_status === "2" && !$this->session->is_librarian) : ?>
                     <a class="button dark small" href="/catalog/borrow/<?php echo $b->book_id; ?>"><?php echo $this->lang->line('catalog__action_borrow'); ?></a>
@@ -49,6 +49,10 @@
         <?php endforeach; ?>
 
         </table>
+    <?php endif; ?>
+
+    <?php if ($this->session->is_librarian): ?>
+        <a class="button" id="book-add-button" href="/catalog/add">Dodaj książkę</a>        
     <?php endif; ?>
 
     </div>

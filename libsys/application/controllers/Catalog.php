@@ -20,6 +20,28 @@ class Catalog extends CI_Controller {
         echo link_tag(asset_url().'css/catalog.css');
     }
 
+    public function add()
+    {
+        $msg            = 'auth_err';
+        $msg_type       = 'error';
+
+        if ($this->session->is_librarian)
+        {
+            $data['title']  = $this->lang->line('catalog__title');
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->load->view('templates/header', $data);
+            $this->load->view('catalog/add', $data);
+            $this->load->view('templates/footer');
+            echo link_tag(asset_url().'css/catalog_add.css');
+        }
+        else
+        {
+            $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
+            redirect('catalog');
+        }
+    }
+
     public function cancel($book_id = -1, $user_id = -1)
     {
         $msg        = 'auth_err';

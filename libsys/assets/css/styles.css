@@ -175,6 +175,11 @@ footer > div:last-child {
     z-index: 1;
 }
 
+.notice {
+    font-size: 12px;
+    color: #eb5e55;
+}
+
 @media only screen and (max-width: 767px) {
     .mobile-hide {
         display: none;
@@ -257,6 +262,10 @@ footer > div:last-child {
     }
 
     footer > div:first-child {
+        font-size: 14px;
+    }
+
+    .notice {
         font-size: 14px;
     }
 }

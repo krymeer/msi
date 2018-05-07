@@ -13,7 +13,7 @@
         <script src="<?php echo asset_url();?>js/jquery-3.3.1.min.js"></script>
         <script src="<?php echo asset_url();?>js/main.js"></script>
         <script src="<?php echo asset_url();?>js/forms.js"></script>
-        <title>Libsys v0.3.2</title>
+        <title>Libsys v0.4</title>
     </head>
     <body>
         <div class="mobile-hide" id="menu-mask"></div>

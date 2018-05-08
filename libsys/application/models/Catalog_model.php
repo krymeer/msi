@@ -17,6 +17,20 @@ class Catalog_model extends CI_model {
         return $this->db->query($q, $id);
     }
 
+    public function add_book()
+    {
+        $q          = 'INSERT INTO books (book_title, book_author_given_names, book_author_surname, book_isbn, book_ean) VALUES (?, ?, ?, ?, ?)';
+        $book_data  = array(
+            htmlentities($this->input->post('book_title')),
+            $this->input->post('book_author_1'),
+            $this->input->post('book_author_2'),
+            $this->input->post('book_isbn'),
+            $this->input->post('book_ean')
+        );
+
+        return $this->db->query($q, $book_data);
+    }
+
     public function update_book_status($book_id, $user_id, $curr_code, $new_code)
     {
         $q = 'SELECT * FROM books WHERE book_status = ? AND book_id = ? AND book_user_id = ?';

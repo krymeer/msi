@@ -7,6 +7,7 @@ $lang['catalog__action_confirm']                    = 'Potwierdź';
 $lang['catalog__action_return']                     = 'Zwróć';
 $lang['catalog__book_author']                       = 'Autor';
 $lang['catalog__book_status']                       = 'Status';
+$lang['catalog__book_id']                           = 'Identyfikator';
 $lang['catalog__book_title']                        = 'Tytuł';
 $lang['catalog__borrowing_status']                  = [ 
                                                         'misc_err'      => 'Wystąpił nieznany błąd. Spróbuj ponownie.',
@@ -15,7 +16,8 @@ $lang['catalog__borrowing_status']                  = [
                                                         'bw_reserve'    => 'Książka została zarezerwowana.',
                                                         'bw_confirm'    => 'Wypożyczenie książki zostało potwierdzone.',
                                                         'bw_cancel'     => 'Rezerwacja książki została anulowana.',    
-                                                        'bw_return'     => 'Zwrócenie książki zostało potwierdzone.'
+                                                        'bw_return'     => 'Zwrócenie książki zostało potwierdzone.',
+                                                        'add_book'      => 'Książka została dodana do listy.'
                                                     ];
 
 $lang['catalog__sections_main_title']               = 'Książki';
@@ -33,7 +35,7 @@ $lang['catalog__section_add_form_label_1']          = 'Tytuł';
 $lang['catalog__section_add_form_label_2']          = 'Imię (imiona) autora';
 $lang['catalog__section_add_form_label_3']          = 'Nazwisko autora';
 $lang['catalog__section_add_form_label_4']          = 'ISBN';
-$lang['catalog__section_add_form_label_5']          = 'EAN-13';
+$lang['catalog__section_add_form_label_5']          = 'EAN';
 
 $lang['account__title']                             = 'Moje konto';
 $lang['account__section_librarian_title']           = 'Bibliotekarz.';
@@ -85,7 +87,9 @@ $lang['map__user_location']           	            = 'Twoja lokalizacja';
 $lang['map__library_prefix']                        = 'Filia nr';
 
 $lang['field_required']                             = 'Pole &#x201e;%s&#x201d; jest wymagane.';
-$lang['field_invalid_chars']                        = 'Pole &#x201e;%s&#x201d; zawiera niedozwolone znaki.';
+$lang['field_invalid_chars']                        = 'Pole &#x201e;%s&#x201d; zawiera niedozwolony lub niepoprawny ciąg znaków.';
+$lang['field_invalid_isbn']                         = 'ISBN powinien składać się z 13 cyfr oddzielonych opcjonalnymi łącznikami (-).';
+$lang['field_invalid_ean']                          = 'EAN powinien składać się z 13 cyfr oddzielonych opcjonalnymi spacjami.';
 
 $lang['contact__title']                             = 'Kontakt';
 $lang['contact__section_main_title']                = 'Poznajmy się.';

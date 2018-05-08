@@ -14,6 +14,7 @@
             <tr>
                 <th><?php echo $this->lang->line('catalog__book_title'); ?></th>
                 <th><?php echo $this->lang->line('catalog__book_author'); ?></th>
+                <th><?php echo $this->lang->line('catalog__book_id'); ?></th>
                 <th><?php echo $this->lang->line('catalog__book_status'); ?></th>
             
             <?php if ($this->session->logged_in): ?>    
@@ -25,7 +26,11 @@
         <?php foreach ($books as $b): ?>
             <tr>
                 <td><?php echo $b->book_title; ?></td>
-                <td><?php echo $b->book_author; ?></td>
+                <td><?php echo $b->book_author_given_names.' '.$b->book_author_surname; ?></td>
+                <td id="book-codes">
+                    <span>ISBN:</span> <?php echo $b->book_isbn; ?><br>
+                    <span>EAN:</span> <?php echo $b->book_ean; ?>
+                </td>
                 <td data-book-status="<?php echo $b->book_status; ?>">
                     <i class="fas fa-square"></i>
                 </td>

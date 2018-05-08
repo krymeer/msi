@@ -48,6 +48,14 @@
     text-align: center;
 }
 
+#book-list td#book-codes {
+    font-size: 10px;
+}
+
+#book-list td#book-codes span {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 767px) {
     #book-list {
         width: 100%;
@@ -82,5 +90,7 @@
         margin: 4px 0;
     }
 
-
+    #book-list td#book-codes {
+        font-size: 12px;
+    }
 }

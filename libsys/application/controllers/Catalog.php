@@ -10,6 +10,26 @@ class Catalog extends CI_Controller {
         $this->load->helper('html');
     }
 
+    public function isbn_match($str)
+    {
+        if (preg_match_all('/\d/', $str, $n) === 13 && preg_match('/^(\d+\-)+(\d)+$/', $str)) 
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function ean_match($str)
+    {
+        if (preg_match_all('/\d/', $str, $n) === 13 && preg_match('/^(\d+\s?)+(\d)+$/', $str)) 
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public function index()
     {
         $data['title'] = $this->lang->line('catalog__title');
@@ -27,13 +47,71 @@ class Catalog extends CI_Controller {
 
         if ($this->session->is_librarian)
         {
-            $data['title']  = $this->lang->line('catalog__title');
             $this->load->helper('form');
             $this->load->library('form_validation');
-            $this->load->view('templates/header', $data);
-            $this->load->view('catalog/add', $data);
-            $this->load->view('templates/footer');
-            echo link_tag(asset_url().'css/catalog_add.css');
+            $this->form_validation->set_rules(
+                'book_title', 
+                $this->lang->line('catalog__section_add_form_label_1'), 
+                'required',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}')
+                )
+            );
+            $this->form_validation->set_rules(
+                'book_author_1', 
+                $this->lang->line('catalog__section_add_form_label_2'), 
+                'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'regex_match'    => sprintf($this->lang->line('field_invalid_chars'), '{field}')
+                )
+            );
+            $this->form_validation->set_rules(
+                'book_author_2', 
+                $this->lang->line('catalog__section_add_form_label_3'), 
+                'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'regex_match'    => sprintf($this->lang->line('field_invalid_chars'), '{field}')
+                )
+            );
+
+            $this->form_validation->set_rules(
+                'book_isbn', 
+                $this->lang->line('catalog__section_add_form_label_4'), 
+                'required|callback_isbn_match',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'isbn_match'    => $this->lang->line('field_invalid_isbn')
+                )
+            );
+
+            $this->form_validation->set_rules(
+                'book_ean', 
+                $this->lang->line('catalog__section_add_form_label_5'), 
+                'required|callback_ean_match',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'ean_match'     => $this->lang->line('field_invalid_ean')
+                )
+            );
+
+            if (!$this->form_validation->run())
+            {
+                $data['title']  = $this->lang->line('catalog__title');
+                $this->load->view('templates/header', $data);
+                $this->load->view('catalog/add', $data);
+                $this->load->view('templates/footer');
+                echo link_tag(asset_url().'css/catalog_add.css');
+            }
+            else
+            {
+                $this->catalog_model->add_book();
+                $msg        = 'add_book';
+                $msg_type   = 'success';
+                $this->session->set_flashdata('borrowing_status', array($msg, $msg_type));
+                redirect('catalog');
+            }
         }
         else
         {
@@ -128,7 +206,7 @@ class Catalog extends CI_Controller {
                 else
                 {
                     $data['book_id']        = (int)$this->uri->segment(3);
-                    $data['book_author']    = $b[0]->book_author; 
+                    $data['book_author']    = $b[0]->book_author_surname.' '.$b[0]->book_author_given_names; 
                     $data['book_title']     = $b[0]->book_title;
                     $data['book_user_id']   = $b[0]->book_user_id;
                     $data['book_user']      = $u[0]->name;

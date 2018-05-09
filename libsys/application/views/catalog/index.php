@@ -26,7 +26,7 @@
         <?php foreach ($books as $b): ?>
             <tr>
                 <td><?php echo $b->book_title; ?></td>
-                <td><?php echo $b->book_author_given_names.' '.$b->book_author_surname; ?></td>
+                <td><?php echo $b->book_author_surname.' '.$b->book_author_given_names; ?></td>
                 <td id="book-codes">
                     <span>ISBN:</span> <?php echo $b->book_isbn; ?><br>
                     <span>EAN:</span> <?php echo $b->book_ean; ?>

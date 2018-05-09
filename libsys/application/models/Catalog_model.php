@@ -7,7 +7,7 @@ class Catalog_model extends CI_model {
 
     public function get_books()
     {
-        $q = 'SELECT * FROM books';
+        $q = 'SELECT * FROM books ORDER BY book_author_surname';
         return $this->db->query($q);
     }
 

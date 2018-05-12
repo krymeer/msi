@@ -10,6 +10,16 @@ class Account extends CI_Controller {
         $this->class_title = $this->lang->line('account__title');
     }
 
+    public function valid_pass($pass)
+    {
+        if (preg_match_all('/[A-Z]/', $pass, $n) >= 1 && preg_match_all('/\d/', $pass, $n) >= 1) 
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public function index()
     {
         echo link_tag(asset_url().'css/account.css');
@@ -131,17 +141,109 @@ class Account extends CI_Controller {
         redirect('/');
     }
 
+    public function signup()
+    {
+        if ($this->session->logged_in)
+        {
+            redirect('account');
+        }
+        else
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules(
+                'username', 
+                $this->lang->line('account__section_signup_form_label_1'), 
+                'required|regex_match[/^[a-z\d_\.]+$/i]|min_length[4]|is_unique[users.name]',
+                array(
+                    'required'          => sprintf($this->lang->line('field_required'), '{field}'),
+                    'min_length'        => sprintf($this->lang->line('account__section_signup_input_short'), '{field}', '{param}'),
+                    'regex_match'       => $this->lang->line('account__section_signup_username_invalid'),
+                    'is_unique'         => $this->lang->line('account__section_signup_username_taken')
+                )
+            );
+            $this->form_validation->set_rules(
+                'password', 
+                $this->lang->line('account__section_signup_form_label_2'), 
+                'required|min_length[8]|callback_valid_pass',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'min_length'    => sprintf($this->lang->line('account__section_signup_input_short'), '{field}', '{param}'),
+                    'valid_pass'    => $this->lang->line('account__section_signup_pass_invalid')
+                )
+            );
+            $this->form_validation->set_rules(
+                'passconf', 
+                $this->lang->line('account__section_signup_form_label_3'), 
+                'required|matches[password]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'matches'       => $this->lang->line('account__section_signup_pass_diff')
+                )
+            );
+            $this->form_validation->set_rules(
+                'email', 
+                $this->lang->line('account__section_signup_form_label_4'), 
+                'required|valid_email|is_unique[users.email]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'valid_email'   => $this->lang->line('contact__section_main_form_email_invalid'),
+                    'is_unique'     => $this->lang->line('contact__section_main_form_email_taken') 
+                )
+            );
+            $this->form_validation->set_rules(
+                'given_names', 
+                $this->lang->line('account__section_signup_form_label_5'), 
+                'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'regex_match'   => sprintf($this->lang->line('field_invalid_chars'), '{field}')
+                )
+            );
+            $this->form_validation->set_rules(
+                'surname', 
+                $this->lang->line('account__section_signup_form_label_6'), 
+                'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'regex_match'   => sprintf($this->lang->line('field_invalid_chars'), '{field}')
+                )
+            );
+
+            if ($this->form_validation->run()) 
+            {
+
+            }
+            //else
+            //{                
+                echo link_tag(asset_url().'css/signup.css');
+                $data['title'] = $this->class_title;
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('account/signup', $data);
+                $this->load->view('templates/footer', $data);
+            //}
+        }
+    }
+
     public function view($page = 'login')
     {
         if (!(file_exists(APPPATH.'views/account/'.$page.'.php')))
         {
-            show_404();
+            show_libsys_error(404);
         }
+        else
+        {
+            if (file_exists(APPPATH.'../assets/css/'.$page.'.css'))
+            {
+                echo link_tag(asset_url().'css/'.$page.'.css');
+            }
 
-        $data['title'] = ucfirst($page);
+            $data['title'] = $this->lang->line($page.'__title');
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('account/'.$page, $data);
-        $this->load->view('templates/footer', $data);
+            $this->load->view('templates/header', $data);
+            $this->load->view('account/'.$page, $data);
+            $this->load->view('templates/footer', $data);
+        }
     }
 }

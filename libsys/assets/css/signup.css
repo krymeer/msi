@@ -1,0 +1,24 @@
+#page-account-signup form {
+    margin: 15px 0;
+}
+
+#page-account-signup form span {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 767px) {
+    #page-account-signup form button {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #page-account-signup form button {
+        float: right;
+    }
+
+    #page-account-signup form,
+    #page-account-signup .alert {
+        max-width: 500px;
+    }
+}

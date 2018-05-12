@@ -61,6 +61,7 @@ $route['account/remove']          = 'account/remove';
 $route['account/remove/success']  = 'account/removal_success';
 $route['account/login']           = 'account/login';
 $route['account/logout']          = 'account/logout';
+$route['account/signup']          = 'account/signup';
 $route['account/(:any)']          = 'account/view/$1';
 $route['default_controller']      = 'pages/view';
 $route['(:any)']                  = 'pages/view/$1';

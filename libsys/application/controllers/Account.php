@@ -210,19 +210,31 @@ class Account extends CI_Controller {
                 )
             );
 
+
+            $data['title'] = $this->class_title;
+            $this->load->view('templates/header', $data);
+
             if ($this->form_validation->run()) 
             {
-
+                if (isset($this->session->account_created))
+                {
+                    redirect('account/login');
+                }
+                else
+                {
+                    $this->account_model->add_user();
+                    $data['username'] = $this->input->post('username');
+                    $this->session->set_flashdata('account_created', $this->lang->line('account__msg_account_created'));
+                    $this->load->view('account/signup_success', $data);
+                }
             }
-            //else
-            //{                
+            else
+            {                
                 echo link_tag(asset_url().'css/signup.css');
-                $data['title'] = $this->class_title;
-
-                $this->load->view('templates/header', $data);
                 $this->load->view('account/signup', $data);
-                $this->load->view('templates/footer', $data);
-            //}
+            }
+
+            $this->load->view('templates/footer', $data);
         }
     }
 

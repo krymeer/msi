@@ -1,6 +1,6 @@
 <section class="clearfix">
     <h2 class="section-title">
-        <?php echo $this->lang->line('account__section_signup_title'); ?>
+        <?php echo $this->lang->line('account__section_signup_title'); ?>.
     </h2>
     <div class="section-content">
         <?php echo $this->lang->line('account__section_signup_text'); ?>

@@ -73,6 +73,8 @@ $lang['account__section_signup_username_invalid']   = 'Nazwa użytkownika może 
 $lang['account__section_signup_username_taken']     = 'Wybrana nazwa użytkownika nie jest dostępna.';
 $lang['account__section_signup_form_email_invalid'] = 'Musisz podać poprawny adres e-mail.';
 $lang['account__section_signup_form_email_taken']   = 'Podany adres e-mail jest już w systemie.';
+$lang['account__section_signup_success_title']      = 'Gratulacje';
+$lang['account__section_signup_success_text']       = 'Twoje konto zostało pomyślnie utworzone. Sprawdź swoją skrzynkę <strong>e-mail</strong> &#x2012; znajdziesz tam informacje o tym, co zrobić, aby zalogować się do systemu.';
 
 $lang['home__title']                                = 'Strona główna';
 $lang['home__section_main_title']                   = 'Witaj świecie!';

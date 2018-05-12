@@ -196,7 +196,7 @@ class Catalog extends CI_Controller {
             }
             else
             {
-                $u = $this->account_model->get_username($b[0]->book_user_id)->result();
+                $u = $this->account_model->get_user($b[0]->book_user_id)->result();
 
                 if (empty($u))
                 {

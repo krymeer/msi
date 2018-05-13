@@ -5,9 +5,15 @@
     <div class="section-content">
         <?php echo $this->lang->line('account__section_login_text'); ?>
     </div>
-    
-<?php if (isset($auth_err)): ?>
-    <div class="alert error"><?php echo $auth_err; ?></div>
+
+<?php if (isset($this->session->account_status)): ?>
+    <div class="alert <?php echo $this->session->account_status; ?>">
+        <?php echo $this->lang->line('account__activation_status_'.$this->session->account_status); ?>
+    </div>
+<?php elseif (isset($auth_err)): ?>
+    <div class="alert error">
+        <?php echo $auth_err; ?>
+    </div>
 <?php endif; ?>
 
 <?php 

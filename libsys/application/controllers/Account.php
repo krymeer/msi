@@ -147,12 +147,16 @@ class Account extends CI_Controller {
         {
             redirect('account');
         }
+        else if (isset($this->session->account_created))
+        {
+            redirect('account/login');
+        }
         else
         {
             $this->load->helper('form');
             $this->load->library('form_validation');
             $this->form_validation->set_rules(
-                'username', 
+                'signup_username', 
                 $this->lang->line('account__section_signup_form_label_1'), 
                 'required|regex_match[/^[a-z\d_\.]+$/i]|min_length[4]|is_unique[users.name]',
                 array(
@@ -163,7 +167,7 @@ class Account extends CI_Controller {
                 )
             );
             $this->form_validation->set_rules(
-                'password', 
+                'signup_password', 
                 $this->lang->line('account__section_signup_form_label_2'), 
                 'required|min_length[8]|callback_valid_pass',
                 array(
@@ -173,26 +177,26 @@ class Account extends CI_Controller {
                 )
             );
             $this->form_validation->set_rules(
-                'passconf', 
+                'signup_passconf', 
                 $this->lang->line('account__section_signup_form_label_3'), 
-                'required|matches[password]',
+                'required|matches[signup_password]',
                 array(
                     'required'      => sprintf($this->lang->line('field_required'), '{field}'),
                     'matches'       => $this->lang->line('account__section_signup_pass_diff')
                 )
             );
             $this->form_validation->set_rules(
-                'email', 
+                'signup_email', 
                 $this->lang->line('account__section_signup_form_label_4'), 
                 'required|valid_email|is_unique[users.email]',
                 array(
                     'required'      => sprintf($this->lang->line('field_required'), '{field}'),
-                    'valid_email'   => $this->lang->line('contact__section_main_form_email_invalid'),
-                    'is_unique'     => $this->lang->line('contact__section_main_form_email_taken') 
+                    'valid_email'   => $this->lang->line('account__section_signup_form_email_invalid'),
+                    'is_unique'     => $this->lang->line('account__section_signup_form_email_taken') 
                 )
             );
             $this->form_validation->set_rules(
-                'given_names', 
+                'signup_given_names', 
                 $this->lang->line('account__section_signup_form_label_5'), 
                 'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
                 array(
@@ -201,7 +205,7 @@ class Account extends CI_Controller {
                 )
             );
             $this->form_validation->set_rules(
-                'surname', 
+                'signup_surname', 
                 $this->lang->line('account__section_signup_form_label_6'), 
                 'required|regex_match[/(*UTF8)^[\p{Latin}a-z\s\-\.\']+$/i]',
                 array(
@@ -210,32 +214,67 @@ class Account extends CI_Controller {
                 )
             );
 
-
             $data['title'] = $this->class_title;
             $this->load->view('templates/header', $data);
 
             if ($this->form_validation->run()) 
             {
-                if (isset($this->session->account_created))
-                {
-                    redirect('account/login');
-                }
-                else
-                {
-                    $this->account_model->add_user();
-                    $data['username'] = $this->input->post('username');
-                    $this->session->set_flashdata('account_created', $this->lang->line('account__msg_account_created'));
-                    $this->load->view('account/signup_success', $data);
-                }
+                $email_config = array(
+                    'protocol'      => 'smtp',
+                    'smtp_host'     => 'smtp.gmail.com',
+                    'smtp_port'     => 587,
+                    'smtp_crypto'   => 'tls',
+                    'smtp_user'     => 'krymeer@gmail.com',
+                    'smtp_pass'     => 'ed3ceb3a66',
+                    'charset'       => 'utf-8',
+                    'crlf'          => "\r\n",
+                    'newline'       => "\r\n"
+                );
+
+                $this->session->signup_token    = bin2hex(random_bytes(48));
+                $this->session->signup_id       = intval($this->account_model->add_user()->row()->id);
+                $this->session->mark_as_temp('signup_token', 3600);
+                $this->session->mark_as_temp('signup_id', 3600);
+                $activation_url = '<a href="https://'.$_SERVER['SERVER_NAME'].'/account/activate/'.$this->session->signup_token.'" target="_blank">https://'.$_SERVER['SERVER_NAME'].'/account/activate/'.$this->session->signup_token.'</a>';
+
+                $this->load->library('email', $email_config);
+                $this->email->from($email_config['smtp_user'], $this->lang->line('account__activation_email_from'));
+                $this->email->message(sprintf($this->lang->line('account__activation_email_message'), $this->input->post('signup_given_names'), $this->input->post('signup_surname'), $activation_url));
+                $this->email->subject($this->lang->line('account__activation_email_subject'));
+                $this->email->to($this->input->post('signup_email'));
+                $this->email->set_mailtype('html');
+                $this->email->send();
+
+                $data['username'] = $this->input->post('signup_username');
+                $this->session->set_flashdata('account_created', 1);
+
+                $this->load->view('account/signup_success', $data);
             }
             else
-            {                
+            {
                 echo link_tag(asset_url().'css/signup.css');
                 $this->load->view('account/signup', $data);
             }
 
             $this->load->view('templates/footer', $data);
         }
+    }
+
+    public function activate($token)
+    {
+        $msg_type = 'error';
+
+        if (isset($this->session->signup_token) && isset($this->session->signup_id) && $this->session->signup_token === $token && $this->session->signup_id >= 0)
+        {
+            $this->account_model->activate($this->session->signup_id);
+            $msg_type = 'success';
+        }
+
+        $this->session->unset_userdata('signup_id');
+        $this->session->unset_userdata('signup_token');
+        $this->session->set_flashdata('account_status', $msg_type);
+
+        redirect('account/login');
     }
 
     public function view($page = 'login')

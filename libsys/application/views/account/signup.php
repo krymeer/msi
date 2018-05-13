@@ -14,37 +14,39 @@
     echo validation_errors('<div class="alert error">', '</div>');
     echo form_open('account/signup');
 ?>
-        <label for="username">
+        <label for="signup_username">
             <?php echo $this->lang->line('account__section_signup_form_label_1'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('username') ;?>" type="text" name="username">
+        <input value="<?php echo set_value('signup_username') ;?>" type="text" name="signup_username">
 
-        <label for="password">
+        <label for="signup_password">
             <?php echo $this->lang->line('account__section_signup_form_label_2'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('password') ;?>" type="password" name="password">
+        <input value="<?php echo set_value('signup_password') ;?>" type="password" name="signup_password">
 
-        <label for="passconf">
+        <label for="signup_passconf">
             <?php echo $this->lang->line('account__section_signup_form_label_3'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('passconf') ;?>" type="password" name="passconf">
+        <input value="<?php echo set_value('signup_passconf') ;?>" type="password" name="signup_passconf">
 
-        <label for="email">
+        <label for="signup_email">
             <?php echo $this->lang->line('account__section_signup_form_label_4'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('email') ;?>" type="text" name="email">
+        <input value="<?php echo set_value('signup_email') ;?>" type="text" name="signup_email">
 
-        <label for="given_names">
+        <label for="signup_given_names">
             <?php echo $this->lang->line('account__section_signup_form_label_5'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('given_names') ;?>" type="text" name="given_names">
+        <input value="<?php echo set_value('signup_given_names') ;?>" type="text" name="signup_given_names">
 
-        <label for="surname">
+        <label for="signup_surname">
             <?php echo $this->lang->line('account__section_signup_form_label_6'); ?><span class="asterisk">*</span>
         </label>
-        <input value="<?php echo set_value('surname') ;?>" type="text" name="surname">
-
-        <button type="submit" name="submit">
+        <input value="<?php echo set_value('signup_surname') ;?>" type="text" name="signup_surname">
+        <div class="asterisk-note">
+            <span class="asterisk">*</span> <?php echo $this->lang->line('field_asterisk'); ?>
+        </div>
+        <button type="submit" name="signup_submit">
             <?php echo $this->lang->line('account__section_signup_form_submit'); ?>
         </button>
     </form>

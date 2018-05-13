@@ -29,7 +29,7 @@
         </label>
         <textarea maxlength="1000" name="contact_message"><?php echo set_value('contact_message'); ?></textarea>
         <div class="asterisk-note">
-            <span class="asterisk">*</span> Pole wymagane.
+            <span class="asterisk">*</span> <?php echo $this->lang->line('field_asterisk'); ?>
         </div>
         <button type="submit" name="submit">
             <?php echo $this->lang->line('contact__section_main_form_submit'); ?>

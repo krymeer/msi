@@ -13,12 +13,27 @@
 }
 
 @media only screen and (min-width: 768px) {
-    #page-account-signup form button {
-        float: right;
-    }
-
     #page-account-signup form,
     #page-account-signup .alert {
         max-width: 500px;
+    }
+
+    #page-account-signup form {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-auto-flow: row dense;
+        max-width: 500px;
+    }
+
+    #page-account-signup form label,
+    #page-account-signup form input {
+        grid-column: span 2;
+    }
+
+
+    #page-account-signup form button {
+        margin-top: 0;
+        grid-column: 2;
+        justify-self: end;
     }
 }

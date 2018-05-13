@@ -75,6 +75,11 @@ $lang['account__section_signup_form_email_invalid'] = 'Musisz podać poprawny ad
 $lang['account__section_signup_form_email_taken']   = 'Podany adres e-mail jest już w systemie.';
 $lang['account__section_signup_success_title']      = 'Gratulacje';
 $lang['account__section_signup_success_text']       = 'Twoje konto zostało pomyślnie utworzone. Sprawdź swoją skrzynkę <strong>e-mail</strong> &#x2012; znajdziesz tam informacje o tym, co zrobić, aby zalogować się do systemu.';
+$lang['account__activation_email_from']             = 'Administrator libsys';
+$lang['account__activation_email_subject']          = 'Aktywacja konta w systemie libsys';
+$lang['account__activation_email_message']          = 'Witaj, %s %s!<br><br>Wszystko wskazuje na to, że udało Ci się założyć konto w systemie <strong>libsys</strong> &#x2012; skorzystaj z poniższego linku, aby je aktywować:<br><br>%s<br><br>Link ten będzie dostępny przez <strong>1 godzinę</strong>.<br><br>---<br><small>Ta wiadomość została wysłana automatycznie &#x2012; prosimy na nią <u>nie odpowiadać</u></small>.';
+$lang['account__activation_status_success']         = 'Twoje konto zostało aktywowane.';
+$lang['account__activation_status_error']           = 'Wystąpił błąd związany z aktywacją konta. Skontaktuj się z administratorem, aby uzyskać więcej szczegółów.';
 
 $lang['home__title']                                = 'Strona główna';
 $lang['home__section_main_title']                   = 'Witaj świecie!';
@@ -104,6 +109,7 @@ $lang['map__section_main_title']                    = 'Gdzie nas znaleźć?';
 $lang['map__user_location']           	            = 'Twoja lokalizacja';
 $lang['map__library_prefix']                        = 'Filia nr';
 
+$lang['field_asterisk']                             = 'Pole wymagane.';
 $lang['field_required']                             = 'Pole &#x201e;%s&#x201d; jest wymagane.';
 $lang['field_invalid_chars']                        = 'Pole &#x201e;%s&#x201d; zawiera niedozwolony lub niepoprawny ciąg znaków.';
 $lang['field_invalid_isbn']                         = 'ISBN powinien składać się z 13 cyfr oddzielonych opcjonalnymi łącznikami (-).';

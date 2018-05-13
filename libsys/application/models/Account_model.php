@@ -25,15 +25,28 @@ class Account_model extends CI_model {
 
     public function add_user()
     {
-        $q              = 'INSERT INTO users (name, pass, given_names, surname, email) VALUES (?, ?, ?, ?, ?)';
+        $q_1            = 'INSERT INTO users (name, pass, given_names, surname, email) VALUES (?, ?, ?, ?, ?)';
+        $q_2            = 'SELECT id FROM users WHERE name = ?';
         $user_data      = array(
-            $this->input->post('username'),
-            password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            $this->input->post('given_names'),
-            $this->input->post('surname'),
-            $this->input->post('email'),
+            $this->input->post('signup_username'),
+            password_hash($this->input->post('signup_password'), PASSWORD_DEFAULT),
+            $this->input->post('signup_given_names'),
+            $this->input->post('signup_surname'),
+            $this->input->post('signup_email'),
         );
 
-        return $this->db->query($q, $user_data);
+        if (!$this->db->query($q_1, $user_data))
+        {
+            return -1;
+        }
+
+        return $this->db->query($q_2, $user_data[0]);
+    }
+
+    public function activate($id)
+    {
+        $q = 'UPDATE users SET is_active = 1 WHERE id = ?';
+
+        return $this->db->query($q, $id);
     }
 }

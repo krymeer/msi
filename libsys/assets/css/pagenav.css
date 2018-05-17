@@ -1,0 +1,26 @@
+.page-nav > .button {
+    font-size: 12px;
+    padding: 2px 7px;
+}
+
+.page-nav > .button {
+    border: 3px solid #eb5e55;
+}
+
+.page-nav > .button:hover {
+    border-color: #474448;
+    font-weight: normal;
+}
+
+.page-nav > .page-current {
+    background: #fff;
+    border-color: #474448;
+    color: #474448;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+    .page-nav > .button {
+        font-size: 14px;
+    }
+}

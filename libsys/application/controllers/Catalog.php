@@ -30,14 +30,17 @@ class Catalog extends CI_Controller {
         return false;
     }
 
-    public function index()
+    public function index($n = 1)
     {
-        $data['title'] = $this->lang->line('catalog__title');
-        $data['books'] = $this->catalog_model->get_books()->result();
+        $data['title']      = $this->lang->line('catalog__title');
+        $data['num_pages']  = ceil($this->catalog_model->get_books('')->num_rows() / 10);
+        $data['books']      = $this->catalog_model->get_books($n)->result();
+        $data['page_no']    = (int)$n;
         $this->load->view('templates/header', $data);
         $this->load->view('catalog/index', $data);
         $this->load->view('templates/footer');
         echo link_tag(asset_url().'css/catalog.css');
+        echo link_tag(asset_url().'css/pagenav.css');
     }
 
     public function add()

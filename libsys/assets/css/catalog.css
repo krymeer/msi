@@ -7,6 +7,7 @@
 #book-list {
     border-collapse: collapse;
     margin: 10px 0;
+    width: 100%;
 }
 
 #book-list th {
@@ -48,12 +49,17 @@
     text-align: center;
 }
 
-#book-list td#book-codes {
+#book-list td.book-codes {
     font-size: 10px;
 }
 
-#book-list td#book-codes span {
+#book-list td.book-codes span {
     font-weight: bold;
+}
+
+#book-list-wrapper > .page-nav {
+    margin: 15px 0;
+    text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
@@ -61,7 +67,7 @@
         width: 100%;
     }
 
-    #book-list td#book-action {
+    #book-list td.book-action {
         width: 110px;
     }
 }
@@ -70,6 +76,14 @@
     #book-add-button {
         display: inline-block;
         margin: 10px 0 0 0;
+    }
+
+    #book-list-wrapper > .page-nav + #book-add-button {
+        margin: 0;
+    }
+
+    #book-list-wrapper > .page-nav {
+        margin: 20px 0;
     }
 
     #book-list {
@@ -90,7 +104,13 @@
         margin: 4px 0;
     }
 
-    #book-list td#book-codes {
+    #book-list td.book-codes {
         font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 1101px) {
+    #book-list-wrapper {
+        width: 700px;
     }
 }

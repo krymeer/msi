@@ -5,10 +5,18 @@ class Catalog_model extends CI_model {
         $this->load->database();
     }
 
-    public function get_books()
+    public function get_books($n)
     {
-        $q = 'SELECT * FROM books ORDER BY book_author_surname';
-        return $this->db->query($q);
+        if (is_numeric($n) && intval($n) >= 0)
+        {
+            $q = 'SELECT * FROM books ORDER BY book_author_surname LIMIT ?, 10 ';
+            return $this->db->query($q, (intval($n)-1) * 10);
+        }
+        else
+        {
+            $q = 'SELECT * FROM books ORDER BY book_author_surname';
+            return $this->db->query($q);
+        }
     }
 
     public function get_book($id)

@@ -57,7 +57,7 @@
     font-weight: bold;
 }
 
-#book-list-wrapper > .page-nav {
+.page-catalog .page-nav {
     margin: 15px 0;
     text-align: center;
 }
@@ -78,12 +78,12 @@
         margin: 10px 0 0 0;
     }
 
-    #book-list-wrapper > .page-nav + #book-add-button {
-        margin: 0;
+    .page-catalog .page-nav {
+        margin: 20px 0 5px 0;
     }
 
-    #book-list-wrapper > .page-nav {
-        margin: 20px 0;
+    #book-list-wrapper {
+        overflow-x: auto;
     }
 
     #book-list {
@@ -110,7 +110,7 @@
 }
 
 @media only screen and (min-width: 1101px) {
-    #book-list-wrapper {
+    #book-list, .page-catalog .page-nav {
         width: 700px;
     }
 }

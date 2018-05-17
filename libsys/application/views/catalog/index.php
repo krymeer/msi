@@ -9,9 +9,18 @@
         </div>
     <?php endif; ?>
 
-        <div id="book-list-wrapper">
+    <?php if ($num_pages > 1): ?>
+        <div class="page-nav">
+            <?php for ($k = 1; $k <= $num_pages; $k++): ?>
+                <a href="/catalog/<?php echo $k; ?>" class="button <?php if ($k === $page_no) echo 'page-current'; ?>">
+                    <?php echo $k; ?>
+                </a>
+            <?php endfor; ?>
+        </div>
+    <?php endif; ?>
 
-        <?php if (count($books) > 0): ?>
+    <?php if (count($books) > 0): ?>
+        <div id="book-list-wrapper">
             <table id="book-list">
                 <tr>
                     <th><?php echo $this->lang->line('catalog__book_title'); ?></th>
@@ -56,20 +65,14 @@
             <?php endforeach; ?>
 
             </table>
-
-            <div class="page-nav">
-                <?php for ($k = 1; $k <= $num_pages; $k++): ?>
-                    <a href="/catalog/<?php echo $k; ?>" class="button <?php if ($k === $page_no) echo 'page-current'; ?>">
-                        <?php echo $k; ?>
-                    </a>
-                <?php endfor; ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($this->session->is_librarian): ?>
-            <a class="button" id="book-add-button" href="/catalog/add">Dodaj książkę</a>
-        <?php endif; ?>
-
         </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->is_librarian): ?>
+        <a class="button" id="book-add-button" href="/catalog/add">
+            <?php echo $this->lang->line('catalog__section_add_title'); ?>
+        </a>
+    <?php endif; ?>
+
     </div>
 </section>

@@ -1,10 +1,14 @@
-.page-nav > .button {
-    font-size: 12px;
-    padding: 2px 7px;
+.page-nav {
+    display: grid;
+    justify-content: center;
+    grid-auto-flow: column;
 }
 
 .page-nav > .button {
+    font-size: 12px;
+    padding: 2px 7px;
     border: 3px solid #eb5e55;
+    display: block;
 }
 
 .page-nav > .button:hover {

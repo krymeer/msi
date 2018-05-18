@@ -4,10 +4,12 @@ class Catalog extends CI_Controller {
     {
         parent::__construct();
         $this->load->library('session');
+        $this->load->library('form_validation');
         $this->load->model('catalog_model');
         $this->load->model('account_model');
         $this->lang->load('libsys_lang', 'polish');
         $this->load->helper('html');
+        $this->load->helper('form');
     }
 
     public function isbn_match($str)
@@ -32,15 +34,27 @@ class Catalog extends CI_Controller {
 
     public function index($n = 1)
     {
-        $data['title']      = $this->lang->line('catalog__title');
-        $data['num_pages']  = ceil($this->catalog_model->get_books('')->num_rows() / 10);
-        $data['books']      = $this->catalog_model->get_books($n)->result();
-        $data['page_no']    = (int)$n;
+        $data['title']          = $this->lang->line('catalog__title');
+        $search                 = htmlentities($this->input->get('search'));
+
+        if (isset($search) && preg_replace('/\s+/', '', $search) !== '')
+        {
+            $data['book_search']    = $search;
+            $data['books']          = $this->catalog_model->find_book($search)->result();
+        }
+        else
+        {
+            $data['num_pages']  = ceil($this->catalog_model->get_books('')->num_rows() / 10);
+            $data['books']      = $this->catalog_model->get_books($n)->result();
+            $data['page_no']    = (int)$n;
+            echo link_tag(asset_url().'css/pagenav.css');
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('catalog/index', $data);
         $this->load->view('templates/footer');
         echo link_tag(asset_url().'css/catalog.css');
-        echo link_tag(asset_url().'css/pagenav.css');
+        echo link_tag(asset_url().'css/catalog_search.css');
     }
 
     public function add()
@@ -50,8 +64,6 @@ class Catalog extends CI_Controller {
 
         if ($this->session->is_librarian)
         {
-            $this->load->helper('form');
-            $this->load->library('form_validation');
             $this->form_validation->set_rules(
                 'book_title', 
                 $this->lang->line('catalog__section_add_form_label_1'), 

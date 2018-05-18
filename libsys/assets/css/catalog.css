@@ -4,9 +4,12 @@
     text-align: center;
 }
 
+#book-list-wrapper {
+    margin: 10px 0;
+}
+
 #book-list {
     border-collapse: collapse;
-    margin: 10px 0;
     width: 100%;
 }
 
@@ -84,9 +87,6 @@
 
     #book-list-wrapper {
         overflow-x: auto;
-    }
-
-    #book-list {
         margin: 15px 0;
     }
 

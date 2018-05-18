@@ -1,0 +1,35 @@
+#book-search-form {
+    margin: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+#book-search-input {
+    margin: 0;
+    outline: none;
+}
+
+#book-search-input,
+#book-search-input::placeholder {
+    color: #555;
+}
+
+#book-search-input:focus {
+    border-color: #db9591;
+}
+
+#book-search-submit {
+    justify-self: end;
+    margin-top: 0;
+    background: #ccc;
+}
+
+#book-search-submit:hover {
+    background: #db9591;
+}
+
+@media only screen and (min-width: 768px) {
+    #book-search-form {
+        margin: 15px 0 0 0;
+    }
+}

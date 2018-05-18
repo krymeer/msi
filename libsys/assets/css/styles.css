@@ -147,6 +147,12 @@ a.page-logo {
     background: #eb5e55;
 }
 
+.section-subtitle {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #474448;
+}
+
 footer {
     text-align: right;  
     background: #474448;
@@ -246,6 +252,11 @@ footer > div:last-child {
         margin: 24px 8px 8px 2px;
         width: 64px;
         height: 10px;
+    }
+
+    .section-subtitle {
+        margin: 0 0 10px 0;
+        font-size: 20px;
     }
 
     .page-contents > section {

@@ -9,18 +9,35 @@
         </div>
     <?php endif; ?>
 
-    <?php if ($num_pages > 1): ?>
+    <?php if (isset($num_pages) && $num_pages > 1): ?>
         <div class="page-nav">
             <?php for ($k = 1; $k <= $num_pages; $k++): ?>
-                <a href="/catalog/<?php echo $k; ?>" class="button <?php if ($k === $page_no) echo 'page-current'; ?>">
+                <a href="/catalog/<?php echo $k; ?>" class="button <?php if (isset($page_no) && $k === $page_no) echo 'page-current'; ?>">
                     <?php echo $k; ?>
                 </a>
             <?php endfor; ?>
         </div>
     <?php endif; ?>
 
-    <?php if (count($books) > 0): ?>
+        <form id="book-search-form" method="get" action="/catalog/" >
+            <input type="text" placeholder="<?php echo $this->lang->line('catalog__search_placeholder'); ?>" id="book-search-input" name="search"<?php if (isset($book_search)) echo 'value="'.$book_search.'"'; ?>>
+            <button type="submit" id="book-search-submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
         <div id="book-list-wrapper">
+
+        <?php if (isset($book_search)): ?>
+            <h3 class="section-subtitle">
+                <?php echo $this->lang->line('catalog__search_results'); ?>
+            </h3>
+
+            <?php if (count($books) === 0): ?>
+                    <?php echo $this->lang->line('catalog__search_no_results'); ?>
+            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if (count($books) > 0): ?>
             <table id="book-list">
                 <tr>
                     <th><?php echo $this->lang->line('catalog__book_title'); ?></th>
@@ -65,8 +82,9 @@
             <?php endforeach; ?>
 
             </table>
+        <?php endif; ?>
+
         </div>
-    <?php endif; ?>
 
     <?php if ($this->session->is_librarian): ?>
         <a class="button" id="book-add-button" href="/catalog/add">

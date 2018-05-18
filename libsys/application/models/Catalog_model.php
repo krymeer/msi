@@ -5,6 +5,12 @@ class Catalog_model extends CI_model {
         $this->load->database();
     }
 
+    public function find_book($title)
+    {
+        $q = 'SELECT * FROM books WHERE book_title LIKE ? ORDER BY book_author_surname';
+        return $this->db->query($q, '%'.urldecode($title).'%');
+    }
+
     public function get_books($n)
     {
         if (is_numeric($n) && intval($n) >= 0)

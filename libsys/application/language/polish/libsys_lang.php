@@ -37,7 +37,7 @@ $lang['catalog__section_add_form_label_3']          = 'Nazwisko autora';
 $lang['catalog__section_add_form_label_4']          = 'ISBN';
 $lang['catalog__section_add_form_label_5']          = 'EAN';
 $lang['catalog__search_placeholder']                = 'Tytuł szukanej książki...';
-$lang['catalog__search_no_results']                 = 'Nic nie znaleziono.';
+$lang['catalog__search_no_results']                 = 'Podany tytuł nie został odnaleziony.';
 $lang['catalog__search_results']                    = 'Wyniki wyszukiwania';
 
 $lang['account__title']                             = 'Moje konto';

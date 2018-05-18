@@ -9,6 +9,13 @@
         </div>
     <?php endif; ?>
 
+        <form id="book-search-form" method="get" action="/catalog/" >
+            <input type="text" placeholder="<?php echo $this->lang->line('catalog__search_placeholder'); ?>" id="book-search-input" name="search"<?php if (isset($book_search)) echo 'value="'.$book_search.'"'; ?>>
+            <button type="submit" id="book-search-submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
     <?php if (isset($num_pages) && $num_pages > 1): ?>
         <div class="page-nav">
             <?php for ($k = 1; $k <= $num_pages; $k++): ?>
@@ -19,12 +26,6 @@
         </div>
     <?php endif; ?>
 
-        <form id="book-search-form" method="get" action="/catalog/" >
-            <input type="text" placeholder="<?php echo $this->lang->line('catalog__search_placeholder'); ?>" id="book-search-input" name="search"<?php if (isset($book_search)) echo 'value="'.$book_search.'"'; ?>>
-            <button type="submit" id="book-search-submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
         <div id="book-list-wrapper">
 
         <?php if (isset($book_search)): ?>

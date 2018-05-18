@@ -1,5 +1,5 @@
 #book-search-form {
-    margin: 10px 0 0 0;
+    margin: 10px 0;
     display: grid;
     grid-template-columns: 1fr auto;
 }
@@ -30,6 +30,12 @@
 
 @media only screen and (min-width: 768px) {
     #book-search-form {
-        margin: 15px 0 0 0;
+        margin: 15px 0;
+    }
+}
+
+@media only screen and (min-width: 1101px) {
+    #book-search-form {
+        width: 700px;
     }
 }

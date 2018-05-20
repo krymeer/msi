@@ -84,9 +84,22 @@ $lang['account__activation_email_message']          = 'Witaj, %s %s!<br><br>Wszy
 $lang['account__activation_status_success']         = 'Twoje konto zostało aktywowane.';
 $lang['account__activation_status_error']           = 'Wystąpił błąd związany z aktywacją konta. Skontaktuj się z administratorem, aby uzyskać więcej szczegółów.';
 
+$lang['barcode__title']                             = 'Czytnik kodów';
+$lang['barcode__section_main_title']                = 'Znajdź książkę.';
+$lang['barcode__section_main_text']                 = 'Wstaw zdjęcie kodu kreskowego książki i zidentyfikuj ją w łatwy oraz przyjemny sposób!';
+$lang['barcode__input_invalid_type']                = 'Dozwolone są wyłącznie pliki graficzne.';
+$lang['barcode__input_ean_not_found']               = 'Zdjecie nie przedstawia kodu kreskowego.';
+$lang['barcode__input_add_img']                     = 'Dodaj zdjęcie';
+$lang['barcode__db_err']                            = ['Podany kod EAN (%s) nie jest powiązany z żadną książką.', 'Wystąpił nieznany błąd (kod EAN: %s). Spróbuj ponownie lub skontaktuj się z administratorem.'];
+
 $lang['home__title']                                = 'Strona główna';
 $lang['home__section_main_title']                   = 'Witaj świecie!';
 $lang['home__section_main_text']                    = 'Witaj na stronie głównej <strong>libsys</strong> ‒ nowoczesnego narzędzia do zarządzania zasobami bibliotecznymi.<br>Skorzystaj z menu, aby odkryć wszystkie niezliczone funkcjonalności systemu!';
+
+$lang['details__title']                             = '&#x201e;%s&#x201d;';
+$lang['details__section_main_title']                = 'Podstawowe informacje';
+$lang['details__book_status']                       = ['Książka została wypożyczona przez użytkownika: %s.', 'Książka została zarezerwowana przez użytkownika: %s.', 'Książka jest obecnie dostępna.'];
+$lang['details__book_status_self']                  = ['Wypożyczyłeś tę książkę.', 'Zarezerwowałeś tę książkę.'];
 
 $lang['news__title']                                = 'Aktualności';
 $lang['news__section_main_title']                   = 'Co nowego?';

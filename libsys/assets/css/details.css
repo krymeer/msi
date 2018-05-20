@@ -1,0 +1,5 @@
+.button.action:only-child,
+.button.action:not(:last-child) {
+    display: inline-block;
+    margin-right: 1px;
+}

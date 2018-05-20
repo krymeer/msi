@@ -32,6 +32,91 @@ class Catalog extends CI_Controller {
         return false;
     }
 
+    public function ean($ean) {
+        $result_array = $this->catalog_model->get_book($ean, 'book_ean')->result_array();
+
+        if (count($result_array) !== 1)
+        {
+            $this->session->set_flashdata('barcode_err', array(count($result_array), $ean));
+            redirect('barcode');
+        }
+
+        $status             = $result_array[0]['book_status'];
+        $id                 = $result_array[0]['book_id'];
+        $user               = $this->account_model->get_user($result_array[0]['book_user_id'])->result();
+        $actions            = array();
+        $data['alert_msg']  = $this->lang->line('details__book_status')[$status];
+
+        if (count($user) > 0)
+        {
+            if ($user[0]->name === $this->session->username)
+            {
+
+                $data['alert_msg']  = sprintf($this->lang->line('details__book_status_self')[$status], $user[0]->name);
+            }
+            else
+            {
+                $data['alert_msg']  = sprintf($this->lang->line('details__book_status')[$status], $user[0]->name);
+            }
+        }
+
+        switch ($status)
+        {
+            case 2:
+                if ($this->session->logged_in && !$this->session->is_librarian )
+                {
+                    $actions[] = array(
+                        'name'  => 'catalog__action_borrow',
+                        'url'   => '/catalog/borrow/'.$id
+                    );
+                }
+
+                break;
+            case 1:
+                $data['status'] = $status;
+
+                if ($this->session->is_librarian)
+                {
+                    $actions[] = array(
+                        'name'  => 'catalog__action_confirm',
+                        'url'   => '/catalog/borrow/'.$id.'/confirm'
+                    );
+                    $actions[] = array(
+                        'name'  => 'catalog__action_cancel',
+                        'url'   => '/catalog/borrow/'.$id.'/cancel'
+                    );
+                }
+
+                break;
+            default:
+                if ($this->session->is_librarian)
+                {
+                    $actions[] = array(
+                        'name'  => 'catalog__action_return',
+                        'url'   => '/catalog/borrow/'.$id.'/return'
+                    );
+                }
+        }
+
+        $data['actions']        = $actions;
+        $data['book_author']    = $result_array[0]['book_author_given_names'].' '.$result_array[0]['book_author_surname']; 
+        $data['title']          = sprintf($this->lang->line('details__title'), $result_array[0]['book_title']);
+
+        if (!$this->session->logged_in)
+        {
+            $data['actions']    = array();
+            $data['actions'][]  = array(
+                'name'  => 'account__section_login_form_submit',
+                'url'   => '/account/login'
+            );
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('catalog/details', $data);
+        $this->load->view('templates/footer');
+        echo link_tag(asset_url().'css/details.css');
+    }
+
     public function index($n = 1)
     {
         $data['title']          = $this->lang->line('catalog__title');

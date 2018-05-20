@@ -1,7 +1,7 @@
 #book-search-form {
     margin: 10px 0;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
 }
 
 #book-search-input {
@@ -18,14 +18,16 @@
     border-color: #db9591;
 }
 
-#book-search-submit {
+.book-search-icon {
     justify-self: end;
-    margin-top: 0;
-    background: #ccc;
+    margin-top: 0 !important;
+    background: #ccc !important;
+    display: grid;
+    align-content: center;
 }
 
-#book-search-submit:hover {
-    background: #db9591;
+.book-search-icon:hover {
+    background: #db9591 !important;
 }
 
 @media only screen and (min-width: 768px) {

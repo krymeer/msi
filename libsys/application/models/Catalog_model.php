@@ -25,9 +25,9 @@ class Catalog_model extends CI_model {
         }
     }
 
-    public function get_book($id)
+    public function get_book($id, $col = 'book_id')
     {
-        $q = 'SELECT * FROM books WHERE book_id = ?';
+        $q = 'SELECT * FROM books WHERE '. $col .' = ?';
         return $this->db->query($q, $id);
     }
 

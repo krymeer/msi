@@ -11,9 +11,12 @@
 
         <form id="book-search-form" method="get" action="/catalog/" >
             <input type="text" placeholder="<?php echo $this->lang->line('catalog__search_placeholder'); ?>" id="book-search-input" name="search"<?php if (isset($book_search)) echo 'value="'.$book_search.'"'; ?>>
-            <button type="submit" id="book-search-submit">
+            <button type="submit" class="book-search-icon">
                 <i class="fas fa-search"></i>
             </button>
+            <a class="button book-search-icon" href="/barcode">
+                <i class="fas fa-barcode"></i>
+            </a>
         </form>
 
     <?php if (isset($num_pages) && $num_pages > 1): ?>

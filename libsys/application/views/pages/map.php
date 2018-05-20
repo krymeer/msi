@@ -22,7 +22,7 @@
     {
         $.ajax({
             type: 'GET',
-            url:  'https://libsys.lo/assets/json/libdata.json',
+            url:  '<?php echo asset_url(); ?>json/libdata.json',
             success: function(data) {
                 if (typeof data.libraries !== 'undefined')
                 {

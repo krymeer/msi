@@ -18,7 +18,8 @@
 
 <?php 
     echo validation_errors('<div class="alert error">', '</div>');
-    echo form_open('account/login');
+    echo form_open('account/login', array('class' => 'form-normal'));
+
 ?>
         <label for="username">
             <?php echo $this->lang->line('account__section_login_form_label_1'); ?>

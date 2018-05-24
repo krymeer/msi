@@ -1,37 +1,35 @@
-#page-account-signup form {
+.form-normal {
     margin: 15px 0;
 }
 
-#page-account-signup form span {
+.form-normal span {
     font-size: 12px;
 }
 
 @media only screen and (max-width: 767px) {
-    #page-account-signup form button {
+    .form-normal button {
         width: 100%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    #page-account-signup form,
-    #page-account-signup .alert {
+    .form-normal,
+    .alert.alert-normal {
         max-width: 500px;
     }
-
-    #page-account-signup form {
+    .form-normal {
         display: grid;
         grid-template-columns: auto auto;
         grid-auto-flow: row dense;
         max-width: 500px;
     }
 
-    #page-account-signup form label,
-    #page-account-signup form input {
+    .form-normal label,
+    .form-normal input {
         grid-column: span 2;
     }
 
-
-    #page-account-signup form button {
+    .form-normal button[type="submit"] {
         margin-top: 0;
         grid-column: 2;
         justify-self: end;

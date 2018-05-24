@@ -7,12 +7,12 @@
     </div>
 
 <?php if (isset($signup_err)): ?>
-    <div class="alert error"><?php echo $signup_err; ?></div>
+    <div class="alert alert-normal error"><?php echo $signup_err; ?></div>
 <?php endif; ?>
 
 <?php 
-    echo validation_errors('<div class="alert error">', '</div>');
-    echo form_open('account/signup');
+    echo validation_errors('<div class="alert alert-normal error">', '</div>');
+    echo form_open('account/signup', array('class' => 'form-normal'));
 ?>
         <label for="signup_username">
             <?php echo $this->lang->line('account__section_signup_form_label_1'); ?><span class="asterisk">*</span>

@@ -20,6 +20,18 @@ class Account extends CI_Controller {
         return false;
     }
 
+    public function curr_pass($pass)
+    {
+        $user = $this->account_model->get_pass($this->session->username)->result();
+
+        if (count($user) > 0 && password_verify($pass, $user[0]->pass))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public function index()
     {
         echo link_tag(asset_url().'css/account.css');
@@ -30,6 +42,67 @@ class Account extends CI_Controller {
             $this->load->view('templates/header', $data);
             $this->load->view('account/index', $data);
             $this->load->view('templates/footer');
+        }
+        else
+        {
+            redirect('account/login');
+        }
+    }
+
+    public function password_change()
+    {
+        if ($this->session->logged_in)
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules(
+                'passchange_passcurr',
+                $this->lang->line('account__section_password_form_label_1'),
+                'required|callback_curr_pass',
+                array(
+                    'required'          => sprintf($this->lang->line('field_required'), '{field}'),
+                    'curr_pass'         => $this->lang->line('account__section_password_curr_invalid')
+                )
+            );
+
+            /**
+             * For some ludicrous reasons the callback is always being executed first
+             */
+            $this->form_validation->set_rules(
+                'passchange_password',
+                $this->lang->line('account__section_password_form_label_2'),
+                'required|min_length[8]|differs[passchange_passcurr]|callback_valid_pass',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'differs'       => sprintf($this->lang->line('account__section_password_same'), '{field}'),
+                    'min_length'    => sprintf($this->lang->line('account__section_signup_input_short'), '{field}', '{param}'),
+                    'valid_pass'    => $this->lang->line('account__section_signup_pass_invalid')
+                )
+            );
+            $this->form_validation->set_rules(
+                'passchange_passconf',
+                $this->lang->line('account__section_password_form_label_3'),
+                'required|matches[passchange_password]',
+                array(
+                    'required'      => sprintf($this->lang->line('field_required'), '{field}'),
+                    'matches'       => $this->lang->line('account__section_signup_pass_diff')
+                )
+            );
+
+            if ($this->form_validation->run())
+            {
+                $this->account_model->update_pass($this->session->username, password_hash($this->input->post('passchange_password'), PASSWORD_DEFAULT));
+                $this->session->set_flashdata('account_status', array('success', 0));
+                redirect('account');
+            }
+            else
+            {
+                $data['title'] = $this->class_title;
+                $this->load->view('templates/header', $data);
+                $this->load->view('account/password_change', $data);
+                $this->load->view('templates/footer');
+                echo link_tag(asset_url().'css/form_normal.css');
+            }
         }
         else
         {
@@ -104,7 +177,7 @@ class Account extends CI_Controller {
                 )
             );
 
-            echo link_tag(asset_url().'css/login.css');
+            echo link_tag(asset_url().'css/form_normal.css');
             $data['title'] = $this->class_title;
 
             if ($this->form_validation->run())
@@ -252,7 +325,7 @@ class Account extends CI_Controller {
             }
             else
             {
-                echo link_tag(asset_url().'css/signup.css');
+                echo link_tag(asset_url().'css/form_normal.css');
                 $this->load->view('account/signup', $data);
             }
 

@@ -23,6 +23,19 @@ class Account_model extends CI_model {
         return $this->db->query($q, $id);
     }
 
+    public function get_pass($username)
+    {
+        $q = 'SELECT pass FROM users WHERE name = ?';
+        return $this->db->query($q, $username);
+    }
+
+    public function update_pass($username, $passhash)
+    {
+        $q = 'UPDATE users SET pass = ? WHERE name = ?';
+
+        return $this->db->query($q, array($passhash, $username));
+    }
+
     public function add_user()
     {
         $q_1            = 'INSERT INTO users (name, pass, given_names, surname, email) VALUES (?, ?, ?, ?, ?)';

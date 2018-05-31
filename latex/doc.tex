@@ -6,6 +6,7 @@
 \usepackage{indentfirst}
 \usepackage{comment}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage[hang,flushmargin]{footmisc} 
 
 \hypersetup{
@@ -20,55 +21,87 @@
 \author{Krzysztof Radosław Osada}
 \date{\today}
 
-\begin{comment}
-    TODO:
-    * wybór tematu
-    * stworzenie projektu
-    * wdrożenie
-\end{comment}
-
 \begin{document}
-    \maketitle
+\maketitle
 
-    \tableofcontents
+\tableofcontents
 
-    \section{Wprowadzenie}
-    Niniejszy dokument jest omówieniem projektu i implementacji prostego \textbf{systemu mobilnego}. Praca jest zbudowana z czterech głównych sekcji: w~pierwszej z nich zawarty został wstęp do tematu, w drugiej -- informacje na temat projektu, w trzeciej -- dokumentacja ułatwiająca korzystanie z~systemu, natomiast w czwartej -- dane dotyczące implementacji.
+\section{Wprowadzenie}
+Niniejszy dokument jest omówieniem projektu i implementacji prostego \textbf{systemu mobilnego}. Praca jest zbudowana z czterech głównych sekcji: w~pierwszej z nich zawarty został wstęp do tematu, w drugiej -- informacje na temat projektu, w trzeciej -- dokumentacja ułatwiająca korzystanie z~systemu, natomiast w czwartej -- dane dotyczące implementacji.
 
-    \subsection{Podstawowe definicje}
-    W celu odpowiedniego zrozumienia przedstawianego problemu niezbędne wydaje się wypunktowanie kilku istotnych dlań pojęć:
-    \begin{itemize}
-        \item \textbf{system mobilny} składający się zarówno z elementów stałych, jak i~ruchomych: użytkowników, serwerów oraz stacji bazowych;
-        \item \textbf{użytkownicy}, mobilni, najczęściej przemieszczający się, korzystający z urządzeń bezprzewodowych i m.in. pod tym względem różnorodni (mający smartfony, palmtopy czy nawet radiowozy policyjne);
-        \item \textbf{serwer}, komputer stacjonarny świadczący usługi na rzecz użytkowników znajdujących się w sieci;
-        \item \textbf{stacja bazowa} zapewiająca utrzymanie łączności pomiędzy użytkownikiem a serwerem.
-    \end{itemize}
+\subsection{Podstawowe definicje}
+W celu odpowiedniego zrozumienia przedstawianego problemu niezbędne wydaje się wypunktowanie kilku istotnych dlań pojęć:
+\begin{itemize}
+    \item \textbf{system mobilny} składający się zarówno z elementów stałych, jak i~ruchomych: użytkowników, serwerów oraz stacji bazowych;
+    \item \textbf{użytkownicy}, mobilni, najczęściej przemieszczający się, korzystający z urządzeń bezprzewodowych i m.in. pod tym względem różnorodni (mający smartfony, palmtopy czy nawet radiowozy policyjne);
+    \item \textbf{serwer}, komputer stacjonarny świadczący usługi na rzecz użytkowników znajdujących się w sieci;
+    \item \textbf{stacja bazowa} zapewiająca utrzymanie łączności pomiędzy użytkownikiem a serwerem.
+\end{itemize}
 
-    Wśród cech charakterystycznych systemów mobilnych wymienić można: brak wspólnej pamięci i globalnego zegara, komunikację ograniczoną do wymiany wiadomości czy asynchronizm wykonywanych operacji.
+Wśród cech charakterystycznych systemów mobilnych wymienić można: brak wspólnej pamięci i globalnego zegara, komunikację ograniczoną do wymiany wiadomości czy asynchronizm wykonywanych operacji.
 
-    Połączenia w systemach mobilnych mogą być przewodowe bądź bezprzewodowe -- do tych ostatnich zalicza się: podczerwone, radiowe, ultradźwiękowe, mikrofalowe i laserowe.
+Połączenia w systemach mobilnych mogą być przewodowe bądź bezprzewodowe -- do tych ostatnich zalicza się: podczerwone, radiowe, ultradźwiękowe, mikrofalowe i laserowe.
 
-    Cennym źródłem informacji na temat systemów mobilnych są materiały dydaktyczne Wydziału Matematyki, Informatyki i Mechaniki Uniwersytetu Warszawskiego\footnote{\ M. Sobczak. Systemy mobilne - Studia Informatyczne. \url{http://wazniak.mimuw.edu.pl/images/1/11/Systemy_mobilne_wyklad_2.pdf}. Dostępny: 24.03.2018.}.
+Cennym źródłem informacji na temat systemów mobilnych są materiały dydaktyczne Wydziału Matematyki, Informatyki i Mechaniki Uniwersytetu Warszawskiego\footnote{\ M. Sobczak. Systemy mobilne - Studia Informatyczne. \url{http://wazniak.mimuw.edu.pl/images/1/11/Systemy_mobilne_wyklad_2.pdf}. Dostępny: 24.03.2018.}.
 
-    \subsection{Opis świata rzeczywistego}
-    Tutaj przedstawię funkcjonujące już rozwiązania.
+\subsection{Opis świata rzeczywistego}
+Od zarania dziejów jedną z podstawowych życiowych potrzeb człowieka jest wzmacnianie jakości codziennej egzystencji. Nie bez przyczyny jedno z~polskich powiedzeń mówi, że potrzeba jest matką wynalazków; wiele odkryć w nauce i technice było wynikiem nie tylko ciekawości jednej osoby czy grupy ludzi, ale także jednoznacznym pragnieniem znalezienia sposobu na łatwiejsze wykonywanie jakiejś czynności. Nie inaczej było w informatyce.
 
-    \subsection{Tematyka pracy}
-    Tutaj omówię tematykę pracy, wynikającą z powyższego opisu świata rzeczywistego.
+Czytanie książek przez wieki było przywilejem -- aktywnością zarezerwowaną jedynie dla wąskiej grupy ludzi, którzy, będąc w większości ludźmi dobrze urodzonymi, mieli w życiu wystarczająco dużo szczęścia (i pieniędzy), aby zdobyć przynajmniej podstawowe wykształcenie i, co za tym idzie, posiąść umiejętność czytania. Przed ledwie stu laty z analfabetyzmem, czyli nieumiejętnością pisania i czytania oraz wykonywania podstawowych działań matematycznych, borykała się przeszło $33\%$ polskiego społeczeństwa\footnote{\ dzieje.pl - Historia Polski. Analfabetyzm w II Rzeczypospolitej. \url{http://dzieje.pl/infografiki/analfabetyzm-w-ii-rzeczypospolitej}. Dostępny: 31.05.2018.}.
 
-    \section{Projekt}
-    
-    \subsection{Założenia}
-    \subsection{Schematy i diagramy}
-    \subsection{Interfejs użytkownika}
+Spadek analfabetyzmu w Polsce i na świecie, czego konsekwencją było upowszechnienie umiejętności czytania -- spowodował wzrost popularności bibliotek. Według definicji instytucje te są ,,powołane od gromadzenia i udostępniania księgozbiorów''\footnote{\ PWN. Słownik języka polskiego. \url{https://sjp.pwn.pl/slowniki/biblioteka.html}. Dostępny: 31.05.2018.}; w praktyce dzięki takim miejscom możemy ,,wypróbować'' rozmaite książki, tzn. przejrzeć je albo nawet przeczytać bez konieczności posiadania ich na własność. Biblioteki mogą być przeznaczone dla ogółu ludzi zamieszkujących dane terytorium (np. Miejska Biblioteka Publiczna we Wrocławiu), pracowników i studentów wybranej uczelni (np. biblioteka Politechniki Wrocławskiej) czy wreszcie zawierać zbiory specjalne i~cenne pod względem dziedzictwa kulturowego (np. Biblioteka Ossolineum).
 
-    \section{Dokumentacja}
-    \subsection{Lista funkcjonalności}
-    \subsection{Instrukcja użytkownika}
+Podobnie jak w innych dziedzinach życia codziennego, nauki, biznesu i~czasu wolnego, tak i rynek biblioteczny został wzbogacony o rozmaite rozwiązania techniczne. Pierwsze systemy biblioteczne, których głównym celem jest możliwie jak najbardziej rozległa automatyzacja procesu wypożyczania książek i tworzenia księgozbiorów, pojawiły się już w latach 70. XX wieku\footnote{\ Wikipedia. \textit{Integrated library system}. \url{https://en.wikipedia.org/wiki/Integrated_library_system}. Dostępny: 31.05.2018.}. Obecnie nie są rzadkością usługi sieciowe umożliwiające przeglądanie zasobów bibliotecznych i wykonywanie określonych akcji, takich jak np. rezerwowanie i wypożyczanie książek czy tworzenie i blokowanie kont. Standardem stało się również oprogramowanie dedykowane dla całych sieci bibliotek; mamy wreszcie czytniki kodów kreskowych, QR code'ów i karty biblioteczne łudząco podobne do tych debetowych. Informatyka i nowoczesne technologie stały się nieodłączną częścią niemal wszystkich istniejących bibliotek\footnote{\ Niektóre filie biblioteki Politechniki Wrocławskiej do dnia dzisiejszego (31.05.2018) obsługują wypożyczenia książek bez użycia systemu informatycznego.}, aczkolwiek niektóre procesy, takie jak autentyfikacja użytkownika i wydawanie książek, pozostają -- z nie do końca jasnych przyczyn -- zinformatyzowane w~niewielkim stopniu i należą do obowiązków osób zatrudnianych przez biblioteki.
 
-    \section{Implementacja}
+Wiodącą biblioteką we Wrocławiu jest wspomniana już \textbf{Miejska Biblioteka Publiczna}, mająca 38 filii\footnote{\ Miejska Biblioteka Publiczna we Wrocławiu. \url{http://www.biblioteka.wroc.pl/}. Dostępny: 31.05.2018.} zlokalizowanych na terenie całego miasta. Ważnymi instytucjami są także biblioteki uniwersyteckie, zlokalizowane przy Uniwersytecie Wrocławskim, Politechnice Wrocławskiej, Uniwersytecie Ekonomicznym, Uniwersytecie Przyrodniczym i innych szkołach wyższych. Każda z bibliotek posiada własną stronę internetową, za której pośrednictwem możliwe jest zarówno przeszukiwanie księgozbioru, jak i wypożyczanie książek; czynność tę należy jednak rozumieć jako \textit{wyrażenie chęci} wypożyczenia książki -- dopóki użytkownik nie pojawi się fizycznie w bibliotece i,~co bardziej istotne, nie potwierdzi swojej tożsamości, dopóty wybrana pozycja nie zostanie mu udostępniona. Ewentualna bierność, tzn. nieodebranie książki w terminie, może dodatkowo wiązać się z wystąpieniem czasowych bądź stałych blokad konta.
 
-    First document. Lorem ipsum dolor sit amet, consecteur adipiscing elit.
-    Krzysztof Radosław Osada, syn Renaty Moniki z domu Szecówka i Macieja.
-    ą ć ę ł ń ó ś ż ź
+Wymienione strony internetowe bibliotek -- i kryjące się za nimi systemy informatyczne -- działają w gruncie rzeczy poprawnie: realizują bowiem swoje dwie wymienione wyżej podstawowe funkcje, dzięki którym użytkownik oszczędza czas, który dotąd musiał zużyć na znajdowanie interesującej go książki w katalogu i zgłaszanie jej wypożyczenia. Z drugiej jednak strony \textit{otoczenie}, w którym te procesy są wykonywane, wydaje się w niektórych przypadkach być zupełnie nieprzyjazne dla użytkownika i odstawać od aktualnych standardów. Możemy tu wymienić następujące problemy:\\
+
+\noindent\textbf{Archaiczny wygląd}\\\vspace{-0.35cm}
+
+Ważnym aspektem oceny produktu przez użytkownika są wywoływane u niego pozytywne (bądź negatywne) emocje. Mogłoby się wydawać, że subiektywne odczucia, które trudno jest w ogóle zmierzyć, nie mają większego wpływu na odbiór stron internetowych. Jest jednak przeciwnie -- dynamiczny rozwój nowoczesnych technologii WWW sprawił, że współcześnie kładzie się duży nacisk nie tylko na to, jakie funkcjonalności ma dostarczać dana aplikacja, ale też na to, w jaki sposób zaprezentuje ewentualne wyniki. Języki i biblioteki programowania pozwalają nam na zaprojektowanie aplikacji webowych o dowolnym wyglądzie, ale nie możemy zapomnieć o uwzględnieniu użyteczności, ergonomii i intuicyjności wdrażanych rozwiązań\footnote{\ Comarch. User Experience -- projektowanie pozytywnego doświadczenia.\\\url{https://www.comarch.pl/erp/nowoczesne-zarzadzanie/numery-archiwalne/user-experience-projektowanie-pozytywnego-doswiadczenia/}. Dostępny: 31.05.2018.}. 
+
+Niestety, ogólnie rozumiane \textit{doświadczenia} użytkownika są kwestią często pomijaną w funkcjonujących obecnie systemach bibliotecznych. \textbf{Politechnika Wrocławska} korzysta m.in. z systemu \textbf{Ex Libris} (Aleph) -- wprawdzie nie jest on dostępny bezpośrednio ze strony głównej biblioteki, ale jest na drugiej pozycji wyników wyszukiwania hasła \texttt{biblioteka pwr} w wywszukiwarce Google.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{aleph.png}
+    \caption{Biblioteka PWr -- wygląd systemu Ex Libris (Aleph).}
+\end{figure}
+
+W tym przypadku trudno jest mówić o choćby częściowym dostosowaniu strony do oczekiwań potencjalnego użytkownika -- witryna sprawia wrażenie, jakby jej wygląd został przygotowany kilkanaście lat temu i od tamtej pory nie ulegl większym zmianom. Co gorsza, widoczna w górnej części rysunku nawigacja jest mało intuicyjna i nie ułatwia użytkownikowi znajdować interesujących go informacji.\\
+
+\noindent\textbf{Brak responsywności}\\\vspace{-0.35cm}
+
+Coraz trudniej wyobrazić sobie świat bez smartfonów -- zaawansowanych technologicznie telefonów komórkowych mających niemal nieograniczony dostęp do szybkiego Internetu oraz możliwości porównywalne z komputerami. Statystyki pokazują, że użytkownicy urządzeń mobilnych stanowią już ponad połowę osób przeglądających zasoby sieci WWW\footnote{\ Statista. Mobile share of website visits worldwide 2018. \url{https://www.statista.com/statistics/241462/global-mobile-phone-website-traffic-share/}. Dostępny: 30.05.2018.}. Warto przy tym zwrócić uwagę na to, jak bardzo dynamicznie rozwinął się rynek smartfonów -- jeszcze dekadę temu udział posiadaczy komórek w statystykach użytkowników Internetu był znikomy.
+
+W odpowiedzi na zmieniające się trendy w Internecie powstało pojęcie \textit{responsive web design} -- idea, zgodnie z którą należy projektować aplikacje webowe i strony internetowe w ten sposób, by dobrze wyświetlały się na ekranach o różnej szerokości (stąd i na smartfonach). Bazowy styl strony powinien być dostępny dla najmniejszego okna, natomiast definicje dla większych ekranów mogą pojawić się później -- taka kolejność sprawi, że słabsze urządzenia przetworzą tylko te reguły, które są niezbędne, natomiast lepsze telefony i komputery ,,dotrą'' do odpowiednich dlań dyrektyw.
+ 
+Podobnie jak inne \textit{standardy} i \textit{zalecenia} funkcjonujące w sieci Web, projektowanie stron internetowych w duchu RWD nie jest bynajmniej formalnie narzuconym nakazem. Negatywnym skutkiem tej sytuacji jest utrudniony dostęp do wielu aplikacji webowych z poziomu urządzeń mobilnych. Dla przykładu strona internetowa \textbf{Miejskiej Biblioteki Publicznej we Wrocławiu} przy mniejszej szerokości ekranu prezentuje się szczególnie niekorzystnie:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mbp.png}
+    \caption{MBP we Wrocławiu -- widok strony głównej.}
+\end{figure}
+
+Próżno tu szukać choćby nawigacji, w której znajdują się odnośniki do większości podstron portalu biblioteki; ponadto szerokość strony nie dostosowuje się do szerokości okna przeglądarki, a rozmiary czcionek są zbyt małe (co może sugerować, że nie ma w kodzie strony stosownej adnotacji o rozdzielczości ekranu). Wygląd witryny nie zachęca zatem do jej odwiedzin z~poziomu urządzenia innego niż komputer osobisty.
+
+\subsection{Tematyka pracy}
+Tutaj omówię tematykę pracy, wynikającą z powyższego opisu świata rzeczywistego.
+
+\section{Projekt}
+
+\subsection{Założenia}
+\subsection{Schematy i diagramy}
+\subsection{Interfejs użytkownika}
+
+\section{Dokumentacja}
+\subsection{Lista funkcjonalności}
+\subsection{Instrukcja użytkownika}
+
+\section{Implementacja}
+
+First document. Lorem ipsum dolor sit amet, consecteur adipiscing elit.
+Krzysztof Radosław Osada, syn Renaty Moniki z domu Szecówka i Macieja.
+ą ć ę ł ń ó ś ż ź
 \end{document}

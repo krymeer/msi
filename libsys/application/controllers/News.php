@@ -15,7 +15,7 @@ class News extends CI_Controller {
         $date               = explode(' ', $news['news_date']);
         $dmy                = explode('-', $date[0]);
         $hms                = explode(':', $date[1]);
-        $news['news_date']  = $dmy[2].' '.$this->lang->line('months_genitives')[(int)$dmy[1]-1].' '.$dmy[0].' '.$this->lang->line('year_genitive').', '.$this->lang->line('hour_abbreviated').' '.(int)$hms[0].':'.$hms[1];
+        $news['news_date']  = ltrim($dmy[2], '0').' '.$this->lang->line('months_genitives')[(int)$dmy[1]-1].' '.$dmy[0].' '.$this->lang->line('year_genitive').', '.$this->lang->line('hour_abbreviated').' '.(int)$hms[0].':'.$hms[1];
 
         return $news;
     }

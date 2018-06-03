@@ -20,6 +20,19 @@ class News extends CI_Controller {
         return $news;
     }
 
+    public function get_news_author($news)
+    {
+        $this->load->model('account_model');
+        $author = $this->account_model->get_user($news['news_author'])->row_array();
+
+        if (!empty($author))
+        {
+            $news['news_author'] = $author['name'];
+        }
+
+        return $news;
+    }
+
     public function index()
     {
         $data['title']  = $this->lang->line('news__title');
@@ -42,6 +55,7 @@ class News extends CI_Controller {
         else
         {
             $data['news_item']  = $this->get_full_date($data['news_item']);
+            $data['news_item']  = $this->get_news_author($data['news_item']);
             $data['title']      = $this->lang->line('news__title');
             echo link_tag(asset_url().'css/news_item.css');
 

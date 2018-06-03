@@ -32,9 +32,10 @@ class News_model extends CI_Model {
     public function set_news()
     {
         $this->load->helper('url');
+        $this->load->helper('text_helper');
         $title      = htmlentities($this->input->post('news_title'));
         $text       = nl2br(htmlentities($this->input->post('news_text')));
-        $author     = $this->session->username;
+        $author     = $this->session->user_id;
         $id         = 1;
         $q          = 'SELECT MAX(news_id) AS max_id FROM news';
         $r          = $this->db->query($q)->result();
@@ -44,7 +45,7 @@ class News_model extends CI_Model {
             $id += intval($r[0]->max_id);
         }
 
-        $slug       = url_title($title, 'dash', true).'-'.$id;
+        $slug       = url_title(convert_accented_characters($title).' '.$id, 'dash', true);
         $q          = 'INSERT INTO news (news_title, news_author, news_slug, news_text) VALUES (?, ?, ?, ?)';
         return $this->db->query($q, array($title, $author, $slug, $text));
     }

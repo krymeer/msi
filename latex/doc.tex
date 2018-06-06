@@ -129,7 +129,7 @@ Prawidłowe działanie systemu nie jest możliwe bez bazy danych, w której są 
 
 \begin{itemize}
     \item \texttt{users.pass} -- hasło użytkownika. Należy pamiętać, że przechowywanie haseł w formie \textbf{tekstu jawnego} jest \textbf{całkowicie niedopuszczalne} -- podczas rejestracji albo zmiany hasła \texttt{libsys} szyfruje wprowadzony ciąg znaków i dopiero wtedy umieszcza go w bazie danych;
-    \item \texttt{users.is\_librarian} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy użytkownik ma dostęp do przeznaczonej dla pracownika biblioteki i wzbogaconej o dodatkowe funkcjonalności części systemu (zob. kolejna sekcja);
+    \item \texttt{users.is\_librarian} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy użytkownik ma dostęp do przeznaczonej dla pracownika biblioteki i~wzbogaconej o dodatkowe funkcjonalności części systemu (zob. \ref{libsys_roles});
     \item \texttt{users.is\_active} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy konto użytkownika jest aktywne. Proces rejestracji w \texttt{libsys} zostaje uznany za zakończony jedynie wtedy, gdy użytkownik w odpowiednim czasie odbierze wysłany do niego e-mail i użyje odnośnika znajdującego się w treści wiadomości.
 \end{itemize}
 
@@ -146,12 +146,48 @@ Wypożyczenie książki jest -- jak by nie patrzeć -- zobowiązaniem polegając
 \end{itemize}
 
 \subsubsection{Typy użytkowników}
+W systemie bibliotecznym ważne jest rozgraniczenie kilku grup potencjalnych użytkowników; mają oni bowiem różne kompetencje, z których powinien wynikać odmienny zakres dostępnych funkcjonalności. W \texttt{libsys} zdefiniowane są trzy role:
+
+\begin{itemize}
+    \label{libsys_roles}
+    \item \textbf{gość} -- dowolna osoba korzystająca z \texttt{libsys}, której ustalenie tożsamości nie jest możliwe. Użytkownik niezalogowany (niezarejestrowany) nie ma prawa do wykonywania żadnych operacji na księgozbiorze -- widzi jedynie jego zawartość;
+    \item \textbf{użytkownik} -- dowolna osoba korzystająca z \texttt{libsys}, której tożsamość jest znana. Użytkownik może rezerwować książki i zmieniać podstawowe dane dotyczące swojego konta;
+    \item \textbf{bibliotekarz} -- użytkownik posiadający specjalne uprawnienia. Stanowi on rolę kontrolną w systemie: potwierdza wypożyczenia i zwroty dokonane przez użytkownika, ale sam jest jednocześnie pozbawiony takich uprawnień. W implementacji wykrywany przy pomocy flagi \texttt{is\_lib-} \texttt{rarian};
+\end{itemize}
 
 \subsubsection{Biblioteka}
+Moduł biblioteczny jest najważniejszą częścią systemu, jego \textit{clou} -- umożliwia wykonywanie rozmaitych operacji na księgozbiorze. Zdefiniowane zostały ponisze zadania:
+
+\begin{itemize}
+    \item \textbf{wyszukiwanie} książki z listy na podstawie jednej z jej cech:
+    \begin{itemize}
+        \item \textbf{tytułu lub jego fragmentu} -- wpisana przez użytkownika fraza (zob. rys. ) jest porównywana ze wszystkimi pozycjami dostępnymi w księgozbiorze. Wynikiem wyszukiwania powinny być wszystkie książki, których tytuł zawiera całą wpisaną frazę,
+        \item \textbf{kodu EAN-13 (ISBN)} -- wysłane przez użytkownika zdjęcie zostaje poddane analizie pod względem zawartości. Jeśli na fotografii znajduje się kod w formacie EAN (ang. \textit{European Article Number}), to jego wartość jest wyszukiwana w księgozbiorze, analogicznie do tytułów w powyższym zdaniu;
+    \end{itemize}
+    \item \textbf{rezerwowanie} książki -- proces poprzedzający faktyczne wypożyczenie, polegający na zgłoszeniu zamiaru wypożyczenia danej pozycji. Podobna operacja jest w MBP we Wrocławiu znana jako \textit{zamówienie} książki;
+    \item \textbf{wypożyczenie} książki -- operacja wykonywana przez bibliotekarza, ograniczająca się do potwierdzenia wypożyczenia danej książki. Odpowiednik tej czynności w świecie rzeczywistym to przekazanie czytelnikowi wypożyczonej książki do ręki;
+    \item \textbf{anulowanie rezerwacji} książki -- zdarzenie przeciwne do wypożyczenia, także związane z rolą bibliotekarza. Może mieć ono miejsce na przykład wtedy, gdy użytkownik nie zrealizuje swojej rezerwacji w odpowiednim czasie;
+    \item \textbf{potwierdzenie zwrotu} książki -- czynność realizowana przez bibliotekarza po oddaniu książki przez czytelnika. Dokonanie potwierdzenia zwrotu powoduje że książka ponownie widnieje w systemie jako dostępna i może ją wypożyczyć kolejna osoba. 
+\end{itemize}
+
+Z każdą książką w \texttt{libsys} wiąże się odpowiedni status:
+
+\begin{itemize}
+    \item \textbf{dostępna} -- żaden z użytkowników nie wypożycza danej pozycji;
+    \item \textbf{zarezerwowana} -- jeden z użytkowników zgłosił zamiar wypożyczenia pozycji i ma na nią wyłączność (w skończonym czasie);
+    \item \textbf{wypożyczona} -- książka nie będzie dostępna do momentu zwrócenia jej przez czytelnika.
+\end{itemize}
 
 \subsubsection{Dodatki}
+Projekt zakłada, że \texttt{libsys} będzie zawierał także inne funkcjonalności, niezwiązane bezpośrednio z głównym zadaniami systemu. Proponowanymi przez autora rozwiązaniami są:
 
+% Diagram klas
 
+\begin{itemize}
+    \item \textbf{interaktywna mapa} prezentująca w podstawowej wersji lokalizacje bibliotek zaprezentowane w graficznej formie (np. znaczników);
+    \item \textbf{aktualności} -- niewielki blog pozwalający na dodawanie wiadomości. Wpisy prezentowane są we fragmentach na liście w odwróconym porządku chronologicznym. Istnieje także możliwość przeczytania pełnej treści wpisu (w osobnym widoku);
+    \item \textbf{formularz kontaktowy} -- komponent służący do kontaktu z administratorem (autorem) systemu, dostępny zarówno dla gości, jak i dla zalogowanych użytkowników.
+\end{itemize}
 
 \section{Implementacja}
 \subsection{Wykorzystywane technologie}
@@ -165,6 +201,8 @@ Prezentowana wersja \texttt{libsys} została zaimplementowana w formie aplikacji
     \item \textbf{Font Awesome 5.0.13} -- oparty o CSS i LESS zestaw ikon oraz logotypów będacy (według autorów) najpopularniejszym tego typu narzędziem na świecie\footnote{\ Font Awesome. \url{https://fontawesome.com}. Dostępny: 6.06.2018.};
     \item \textbf{QuaggaJS} -- zaawansowany czytnik kodów kreskowych napisany w języku JavaScript. Biblioteka mieści się w jednym pliku, nie wymaga dostępu do Internetu i rozpoznaje m.in. kody EAN-13 i ISBN, standardów powszechnie wykorzystywanych na rynku wydawniczym.
 \end{itemize}
+
+% Google Maps API
 
 \newpage
 \subsection{Interfejs użytkownika}

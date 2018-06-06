@@ -5,6 +5,7 @@
 \frenchspacing
 \usepackage{indentfirst}
 \usepackage{amsfonts}
+\usepackage{subcaption}
 \usepackage{comment}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -66,7 +67,7 @@ Ważnym aspektem oceny produktu przez użytkownika są wywoływane u niego pozyt
 Niestety, ogólnie rozumiane \textit{doświadczenia} użytkownika są kwestią często pomijaną w funkcjonujących obecnie systemach bibliotecznych. \textbf{Politechnika Wrocławska} korzysta m.in. z systemu \textbf{Ex Libris} (Aleph) -- wprawdzie nie jest on dostępny bezpośrednio ze strony głównej biblioteki, ale jest na drugiej pozycji wyników wyszukiwania hasła \texttt{biblioteka pwr} w wyszukiwarce Google.
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{aleph.png}
+    \includegraphics[width=\textwidth]{img/aleph.png}
     \caption{biblioteka PWr -- wygląd systemu Ex Libris (Aleph).}
 \end{figure}
 
@@ -82,7 +83,7 @@ Podobnie jak inne \textit{standardy} i \textit{zalecenia} funkcjonujące w sieci
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{mbp.png}
+    \includegraphics[width=0.5\textwidth]{img/mbp.png}
     \caption{MBP we Wrocławiu -- widok strony głównej.}
 \end{figure}
 
@@ -117,27 +118,177 @@ Prawidłowe działanie systemu nie jest możliwe bez bazy danych, w której są 
 \begin{itemize}
     \item \texttt{users.id} -- unikalna dla każdego użytkownika liczba $n$ taka, że $n \in \mathbb{N} \land n > 0$, pozwalająca na jednoznaczne rozpoznanie osoby. Identyfikator jest używany we wszystkich tabelach. Pole to ma własność \texttt{AUTO\_INCREMENT} sprawiającą, że każda nowo dodana krotka posiada \texttt{id} większy o 1 od najwyższego dotychczas nadanego identyfikatora;
     \item \texttt{users.name} -- nazwa użytkownika, podobnie jak identyfikator, jest ograniczona do jednego rekordu w tabeli. Pole to jest używane zarówno przy autentyfikacji osoby (tzn. w procesie logowania), jak i prezentacji rozamitych danych (np. nick użytkowika, który wypożyczył daną książkę);
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/diagram_db.png}
+    \caption{struktura podstawowej bazy danych.}
+    \label{fig:dbdiagram}
+\end{figure}
+
+\begin{itemize}
     \item \texttt{users.pass} -- hasło użytkownika. Należy pamiętać, że przechowywanie haseł w formie \textbf{tekstu jawnego} jest \textbf{całkowicie niedopuszczalne} -- podczas rejestracji albo zmiany hasła \texttt{libsys} szyfruje wprowadzony ciąg znaków i dopiero wtedy umieszcza go w bazie danych;
     \item \texttt{users.is\_librarian} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy użytkownik ma dostęp do przeznaczonej dla pracownika biblioteki i wzbogaconej o dodatkowe funkcjonalności części systemu (zob. kolejna sekcja);
     \item \texttt{users.is\_active} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy konto użytkownika jest aktywne. Proces rejestracji w \texttt{libsys} zostaje uznany za zakończony jedynie wtedy, gdy użytkownik w odpowiednim czasie odbierze wysłany do niego e-mail i użyje odnośnika znajdującego się w treści wiadomości.
 \end{itemize}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\textwidth]{diagram_db.png}
-    \caption{struktura podstawowej bazy danych.}
-    \label{fig:dbdiagram}
-\end{figure}
-
-\subsection{Interfejs użytkownika}
-
-\section{Dokumentacja}
 \subsection{Lista funkcjonalności}
-\subsection{Instrukcja użytkownika}
+Projekt \texttt{libsys} to luźna interpetacja systemu bibliotecznego -- jego istotną częścią jest zatem moduł do wypożyczania książek i przeglądania księgozbioru. Przygotowane przez autora rozwiązania można podzielić według kilku wymienionych poniżej kategorii.
+
+\subsubsection{Konta}
+Wypożyczenie książki jest -- jak by nie patrzeć -- zobowiązaniem polegającym na wejściu w tymczasowe posiadanie ruchomości należącej do innego podmiotu (osoby) i zwrócenie tej rzeczy w stanie niezmienionym. Ponieważ czynność ta wiąże się niejednokrotnie z poniesieniem ewentualnych kosztów finansowych, powinna być odpowiednio chroniona. Konta w \texttt{libsys} są zatem potrzebne do jednoznacznej \textbf{identyfikacji} użytkowników i przydzielenia im odpowiednich \textbf{uprawnień}. Na moduł użytkownika składają się:
+\begin{itemize}
+    \item rejestracja kont spełniających odpowiednie kryteria (silne hasło, poprawny adres e-mail itd.), aktywowanych przy użyciu linków o krótkiej ważności wysyłanych na podany adres elektroniczny (za pośrednictwem serwera \textbf{Gmail});
+    \item autentyfikacja użytkownika poprzez sprawdzanie zgodności nazwy użytkownika i \textbf{zaszyfrowanego} hasła z informacjami przechowywanymi w~bazie danych;
+    \item ograniczenie dostępu (ew. ukrycie części funkcjonalności) dla gościa (użytkownika niezalogowanego) na większości podstron;
+    \item dodatkowe operacje: zmiany hasła i usunięcia konta.
+\end{itemize}
+
+\subsubsection{Typy użytkowników}
+
+\subsubsection{Biblioteka}
+
+\subsubsection{Dodatki}
+
+
 
 \section{Implementacja}
+\subsection{Wykorzystywane technologie}
+Prezentowana wersja \texttt{libsys} została zaimplementowana w formie aplikacji webowej pracującej na serwerze i komunikującej się z klientem za pośrednictwem przeglądarki internetowej. Swoje wykorzystanie w projekcie znalazły rozmaite technologie WWW, wśród których wymienić można między innymi:
 
-First document. Lorem ipsum dolor sit amet, consecteur adipiscing elit.
-Krzysztof Radosław Osada, syn Renaty Moniki z domu Szecówka i Macieja.
-ą ć ę ł ń ó ś ż ź
+\begin{itemize}
+    \item \textbf{XAMPP 7.0.25} -- darmowy, wieloplaformowy pakiet typu \textit{open source} będący darmowym serwerem WWW do obsługi dynamicznych stron internetowych. Zestaw zapewnia bazę danych i interpetację plików PHP, z których w większości składa się \texttt{libsys};
+    \item \textbf{CodeIgniter 3.1.8} -- prosty framework do budowy dynamicznych stron internetowych z PHP. CI może się szczycić czytelną składnią, przystępną dokumentacją i dużą społecznością użytkowników; 
+    \item \textbf{HTML 5} z \textbf{CSS 3} -- języki stanowiące podstawę każdej nowoczesnej strony internetowej, używane do definiowania struktury blokowej dokumentów i nadawania im stylów;
+    \item \textbf{jQuery 3.3.1} -- biblioteka ułatwiająca korzystanie z języka \textbf{JavaScript} i pisanie skryptów na stronach WWW, przydatna przede wszystkim przy tworzeniu zapytań AJAX i wyszukiwaniu elementów w dokumentach HTML;
+    \item \textbf{Font Awesome 5.0.13} -- oparty o CSS i LESS zestaw ikon oraz logotypów będacy (według autorów) najpopularniejszym tego typu narzędziem na świecie\footnote{\ Font Awesome. \url{https://fontawesome.com}. Dostępny: 6.06.2018.};
+    \item \textbf{QuaggaJS} -- zaawansowany czytnik kodów kreskowych napisany w języku JavaScript. Biblioteka mieści się w jednym pliku, nie wymaga dostępu do Internetu i rozpoznaje m.in. kody EAN-13 i ISBN, standardów powszechnie wykorzystywanych na rynku wydawniczym.
+\end{itemize}
+
+\newpage
+\subsection{Interfejs użytkownika}
+
+Szablon systemu \texttt{libsys} jest zbudowany z plików PHP, JS i CSS. Najistotniejsze części strony, wśród których można wymienić: nagłówek z panelem nawigacji, część główna oraz stopka, są zdefiniowane w osobnych plikach zwanych \textit{widokami}. Każda z podstron systemu stanowi niejako osobną \textit{klasę} i ma zdefiniowane unikalne dla siebie style i układy treści.
+
+\textbf{Strona główna} aplikacji zawiera jedynie wiadomość powitalną, która łatwo może być rozszerzona o dodatkową treść. Istnieje również możliwość przekierowania na podstronę \textbf{aktualności}:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/libsys_home.png}
+    \caption{\texttt{libsys} -- strona główna.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/libsys_news.png}
+    \caption{\texttt{libsys} -- aktualności.}
+\end{figure}
+
+Jest ona swego rodzaju mini-blogiem, na której pojawiają się wpisy wyświetlane w kolejności od najnowszego do najstarszego. Naciśnięcie przycisku \texttt{Czytaj więcej} skutkuje przeładowaniem strony i wyświetleniem pełnej treści wybranej wiadomości. Na samym końcu listy wpisów znajduje się dodatkowy odnośnik prowadzący do strony dodawania newsów, pokazywany jedynie osobom do tego uprawnionym.
+
+Dostęp do części funkcjonalności \texttt{libsys} jest dostępny jedynie po zalogowaniu. Próba nieuprawnionego wejścia skutkuje przekierowaniem na stronę \textbf{logowania}, gdzie użytkownik systemu wprowadza swoje dane: nazwę (login) oraz hasło. Poniżej formularza znajduje się link do podstrony rejestracji.
+
+Pojawienie się ewentualnych błędów przy wprowadzaniu danych -- zarówno w formularzu logowania, jak i w innych miejscach -- powoduje, że system zwraca odpowiednie \textbf{komunikaty}. Wiadomości te prezentowane są w postaci niewielkich bloków tekstu w kontrastowym kolorze:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/libsys_account_4.png}
+    \caption{\texttt{libsys} -- komunikat o błędzie.}
+\end{figure}
+
+Jeżeli autentyfikacja jest zakończona się powodzeniem, następuje przejście do \textit{pulpitem} użytkownika -- podstrony, na której może on wykonać podstawowe operacje dotyczące swojego konta. 
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_account_1.png}
+\end{subfigure}\quad
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_account_2.png}
+\end{subfigure}
+\caption{\texttt{libsys} - strona logowania / pulpit użytkownika.}
+\end{figure}
+
+Wybór opcji \textbf{zmiany hasła} skutkuje załadowaniem nowej strony, na której widnieje formularz z odpowiednimi polami. Jego wypełnianie to operacja łatwa i przyjemna -- wszystkie pola są opatrzone właściwym opisem, przycisk zapisu wyróżnia się kontrastowym kolorem, a~ewentualne błędy system przedstawia w postaci ostrzeżeń. Drugą dostępną w panelu użytkownika opcją jest usunięcie konta, które jest, rzecz jasna, całkowicie odradzane. Zamknięcie konta to operacja nieodwracalna -- wiąże się z utratą dostępu do części udogodnień systemu.
+
+\textbf{Nawigacja} strony pomaga zorientować się w fukcjonalnościach \texttt{libsys}; jest niewielka, czytelna i -- co najważńiejsze -- zrozumiała. Menu w wersji systemu na urządzenia mobilne jest widoczne jedynie na żądanie, otwierane przy użyciu przycisku ukazanego w prawym górnym rogu rysunku (tzw. \textit{bars} albo \textit{hamburger}). Zabieg ten przekłada się na oszczędność miejsca na ekranie, która jest mocno ograniczona szczególnie w przypadku małych telefonów komórowych.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.4\textwidth]{img/libsys_menu.png}
+    \caption{\texttt{libsys} -- nawigacja.}
+\end{figure}
+
+Analogicznie wygląda formularz \textbf{kontaktowy} (rys. \ref{fig:libsys_contact}), względem pozostałych wzbogacony o duże pole tekstowe i umożliwiający wysyłanie zapytań związanych m.in. z działaniem systemu:
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_account_3.png}
+\end{subfigure}\quad
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_contact.png}
+\end{subfigure}
+    \caption{\texttt{libsys} -- zmiana hasła / kontakt.}
+    \label{fig:libsys_contact}
+\end{figure}
+
+Miłym udogodnieniem jest także interaktywna \textbf{mapa} (rys. \ref{fig:libsys_map}), która wskazuje obecne położenie użytkownika i prezentuje lokalizacje wszystkich filii Miejskiej Biblioteki Publicznej we Wrocławiu; każdy oddział jest zaznaczony specjalnym znacznikiem zawierającym informacje nt. danego miejsca.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.75\textwidth]{img/libsys_map.png}
+    \caption{\texttt{libsys} -- mapa.}
+    \label{fig:libsys_map}
+\end{figure}
+
+Jedną z najważniejszych części systemu (zgodnie z jego zastosowaniem) jest \textbf{katalog} książek; w podstawowym widoku prezentowane są wszystkie pozycje należące do księgozbioru. Wykaz jest podzielony tak, że w danej chwili wyświetlanych jest co najwyżej 10 pozycji, kolejne zaś -- na następnych stronach. Ważną informacją zarówno dla bibliotekarza, jak i dla czytelnika jest status książki reprezentowany kolorem:
+
+\begin{itemize}
+    \item czerwonym     -- trwa wypożyczenie książki (nie została jeszcze zwrócona);
+    \item pomarańczowym -- jeden z czytelników dokonał rezerwacji (zamówienia) książki;
+    \item zielonym      -- książka jest obecnie dostępna.
+\end{itemize}
+
+Użytkownik mający rozszerzone uprawnienia (np. bibliotekarz) może dodawać nowe książki do księgozbioru -- czynność ta wymaga wypełniania formularza z podstawowymi danymi nt. pozycji (imię i nazwisko autora, tytuł, numer ISBN itd.).
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.48\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_catalog_1.png}
+\end{subfigure}\quad
+\begin{subfigure}{.48\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_catalog_2.png}
+\end{subfigure}
+    \caption{\texttt{libsys} -- katalog: lista i wyniki wyszukiwania.}
+    \label{fig:libsys_search_results}
+\end{figure}
+
+Powyżej listy książek znajduje się \textbf{wyszukiwarka} -- system szuka książki o tytule zgodnym (lub częściowo zgodnym, tzn. zawierającym) z zawartością tego pola i prezentuje ewentualne wyniki w tej samej formie, w jakiej wyświetlany jest księgozbiór (bez podziału na strony). Jeżeli dane zapytanie nie zwróci żadnych rezultatów, to pojawi się stosowny komunikat (rys. \ref{fig:libsys_search_results}).
+
+Praktyczną opcją -- szczególnie z punktu widzenia użytkowników smartfonów -- jest wyszukiwanie książek na bazie \textbf{kodów kreskowych}. Jeśli wybrany przez czytelnika plik zawiera kod kreskowy, to zostaje on sczytany i~porównany z zasobami przechowywanymi w bazie danych; w przypadku niepowodzenia użytkownik zostaje poproszony o załadowanie kolejnej fotografii (przygotowanej wcześniej bądź wykonanej przed chwilą).
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.48\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_catalog_3.png}
+\end{subfigure}\quad
+\begin{subfigure}{.48\textwidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{img/libsys_catalog_4.png}
+\end{subfigure}
+    \caption{\texttt{libsys} -- katalog: wyszukiwanie przy użyciu kodu kreskowego.}
+\end{figure}
+
+Może się też zdarzyć, że skrypt nie znajdzie kodu kreskowego na zdjęciu -- w takim wypadku wskazane jest dodanie nowej fotografii albo wpisanie tytułu w wyszukiwarce. Jeśli jednak identyfikacja zasobu bibliotecznego zakończy się pomyślnie, to nastąpi przekierowanie na podsronę podsumowującą informacje o danej książce, w tym jej status -- na podstawie tej zmiennej oraz roli użytkownika (bibliotekarz czy nie-bibliotekarz) system decyduje, które operacje (wypożyczenie, rezerwacja itp.) są dozwolone, a które nie.
+
+
 \end{document}

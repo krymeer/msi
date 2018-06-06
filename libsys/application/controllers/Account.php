@@ -178,6 +178,7 @@ class Account extends CI_Controller {
             );
 
             echo link_tag(asset_url().'css/form_normal.css');
+            echo link_tag(asset_url().'css/login.css');
             $data['title'] = $this->class_title;
 
             if ($this->form_validation->run())

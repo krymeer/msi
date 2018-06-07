@@ -133,7 +133,48 @@ Prawidłowe działanie systemu nie jest możliwe bez bazy danych, w której są 
     \item \texttt{users.is\_active} -- pole typu logicznego (\texttt{true}/\texttt{false}) określające, czy konto użytkownika jest aktywne. Proces rejestracji w \texttt{libsys} zostaje uznany za zakończony jedynie wtedy, gdy użytkownik w odpowiednim czasie odbierze wysłany do niego e-mail i użyje odnośnika znajdującego się w treści wiadomości.
 \end{itemize}
 
+\subsubsection{Diagram klas}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/diagram_classes.png}
+    \caption{diagram klas systemu.}
+    \label{fig:classdiagram}
+\end{figure}
+
+W systemie zdefiniowanych jest 5 klas reprezentujących różne moduły -- są to:
+\begin{itemize}
+    \item \texttt{Account} -- moduł użytkownika;
+    \item \texttt{Catalog} -- moduł biblioteczny;
+    \item \texttt{Contact} -- podstrona formularza kontaktowego;
+    \item \texttt{Pages} -- klasa ogólna dla zwykłych podstron;
+    \item \texttt{News} -- mini-blog, czyli podstrona dla aktualności.
+\end{itemize}
+Klasy w \texttt{libsys} pełnią funkcję \textit{kontrolerów} -- przyjmują dane od użytkownika, zmieniają widok aplikacji i aktualizują modele. Więcej informacji dotyczących implementacji oraz funkcjonalności znajdują się kolejno w sekcjach \ref{libsys_technologies} oraz \ref{libsys_func}.
+
+\subsubsection{Diagram przypadków użycia}
+Przypadki użycia systemu są w większości skupione wokół modułów: bibliotecznego i użytkownika. Poniższy rysunek prezentuje podstawowe operacje wykonywane przez \textit{aktorów} (użytkowników) systemu:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/diagram_use_cases.png}
+    \caption{diagram możliwych przypadków użycia \texttt{libsys}.}
+    \label{fig:ucdiagram}
+\end{figure}
+
+Użytkownicy \texttt{libsys} przyjmują określone role różniące się zakresem uprawnień i ewentualnymi ograniczeniami dostępu do funkcjonalności. Sekcja \ref{libsys_roles} tej pracy przybliża typy użytkowników.
+
+\subsubsection{Diagram stanów}
+Jednym z najważniejszych i zarazem najbardziej podstawowych obiektów w systemie bibliotecznym jest książka -- wg definicji ,,złożone i oprawione arkusze papieru, zadrukowane tekstem literackim, naukowym lub użytkowym''\footnote{\ PWN. Słownik języka polskiego. \url{http://sjp.pwn.pl/szukaj/ksi\%C4\%85\%C5\%BCka}. Dostępny: 7.06.2018.}. Książka -- w zależności od tego, czy jest wypożyczona, czy też nie -- może znajdować się w różnym \textbf{stanie} (zob. sekcję \ref{libsys_book_status}). Pojęcie to dobrze obrazuje diagram \ref{fig:stdiagram}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/diagram_states.png}
+    \caption{diagram możliwych stanów książki.}
+    \label{fig:stdiagram}
+\end{figure}
+
 \subsection{Lista funkcjonalności}
+\label{libsys_func}
 Projekt \texttt{libsys} to luźna interpetacja systemu bibliotecznego -- jego istotną częścią jest zatem moduł do wypożyczania książek i przeglądania księgozbioru. Przygotowane przez autora rozwiązania można podzielić według kilku wymienionych poniżej kategorii.
 
 \subsubsection{Konta}
@@ -146,6 +187,7 @@ Wypożyczenie książki jest -- jak by nie patrzeć -- zobowiązaniem polegając
 \end{itemize}
 
 \subsubsection{Typy użytkowników}
+\label{libsys_roles}
 W systemie bibliotecznym ważne jest rozgraniczenie kilku grup potencjalnych użytkowników; mają oni bowiem różne kompetencje, z których powinien wynikać odmienny zakres dostępnych funkcjonalności. W \texttt{libsys} zdefiniowane są trzy role:
 
 \begin{itemize}
@@ -156,7 +198,8 @@ W systemie bibliotecznym ważne jest rozgraniczenie kilku grup potencjalnych uż
 \end{itemize}
 
 \subsubsection{Biblioteka}
-Moduł biblioteczny jest najważniejszą częścią systemu, jego \textit{clou} -- umożliwia wykonywanie rozmaitych operacji na księgozbiorze. Zdefiniowane zostały ponisze zadania:
+\label{libsys_book_status}
+sModuł biblioteczny jest najważniejszą częścią systemu, jego \textit{clou} -- umożliwia wykonywanie rozmaitych operacji na księgozbiorze. Zdefiniowane zostały ponisze zadania:
 
 \begin{itemize}
     \item \textbf{wyszukiwanie} książki z listy na podstawie jednej z jej cech:
@@ -181,8 +224,6 @@ Z każdą książką w \texttt{libsys} wiąże się odpowiedni status:
 \subsubsection{Dodatki}
 Projekt zakłada, że \texttt{libsys} będzie zawierał także inne funkcjonalności, niezwiązane bezpośrednio z głównym zadaniami systemu. Proponowanymi przez autora rozwiązaniami są:
 
-% Diagram klas
-
 \begin{itemize}
     \item \textbf{interaktywna mapa} prezentująca w podstawowej wersji lokalizacje bibliotek zaprezentowane w graficznej formie (np. znaczników);
     \item \textbf{aktualności} -- niewielki blog pozwalający na dodawanie wiadomości. Wpisy prezentowane są we fragmentach na liście w odwróconym porządku chronologicznym. Istnieje także możliwość przeczytania pełnej treści wpisu (w osobnym widoku);
@@ -191,6 +232,7 @@ Projekt zakłada, że \texttt{libsys} będzie zawierał także inne funkcjonalno
 
 \section{Implementacja}
 \subsection{Wykorzystywane technologie}
+\label{libsys_technologies}
 Prezentowana wersja \texttt{libsys} została zaimplementowana w formie aplikacji webowej pracującej na serwerze i komunikującej się z klientem za pośrednictwem przeglądarki internetowej. Swoje wykorzystanie w projekcie znalazły rozmaite technologie WWW, wśród których wymienić można między innymi:
 
 \begin{itemize}
@@ -201,8 +243,6 @@ Prezentowana wersja \texttt{libsys} została zaimplementowana w formie aplikacji
     \item \textbf{Font Awesome 5.0.13} -- oparty o CSS i LESS zestaw ikon oraz logotypów będacy (według autorów) najpopularniejszym tego typu narzędziem na świecie\footnote{\ Font Awesome. \url{https://fontawesome.com}. Dostępny: 6.06.2018.};
     \item \textbf{QuaggaJS} -- zaawansowany czytnik kodów kreskowych napisany w języku JavaScript. Biblioteka mieści się w jednym pliku, nie wymaga dostępu do Internetu i rozpoznaje m.in. kody EAN-13 i ISBN, standardów powszechnie wykorzystywanych na rynku wydawniczym.
 \end{itemize}
-
-% Google Maps API
 
 \newpage
 \subsection{Interfejs użytkownika}
@@ -328,5 +368,15 @@ Praktyczną opcją -- szczególnie z punktu widzenia użytkowników smartfonów 
 
 Może się też zdarzyć, że skrypt nie znajdzie kodu kreskowego na zdjęciu -- w takim wypadku wskazane jest dodanie nowej fotografii albo wpisanie tytułu w wyszukiwarce. Jeśli jednak identyfikacja zasobu bibliotecznego zakończy się pomyślnie, to nastąpi przekierowanie na podsronę podsumowującą informacje o danej książce, w tym jej status -- na podstawie tej zmiennej oraz roli użytkownika (bibliotekarz czy nie-bibliotekarz) system decyduje, które operacje (wypożyczenie, rezerwacja itp.) są dozwolone, a które nie.
 
+\newpage
+\section{Podsumowanie}
+Niniejszy dokument przybliża główne idee systemu, proponowane funkcjonalności oraz projekt interfejsu graficznego. Istnieje wiele dalszych kierunków rozwoju \texttt{libsys}:
+
+\begin{itemize}
+    \item wzmocnienie zabezpieczeń systemu;
+    \item udoskonalenie głównych komponentów (bibliotecznego, użytkownika);
+    \item rozwinięcie systemu o dalsze, dodatkowe funkcjonalności;
+    \item zebranie opinii na temat wstępnej wersj isystemu.
+\end{itemize}
 
 \end{document}
